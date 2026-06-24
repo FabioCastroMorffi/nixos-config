@@ -53,12 +53,21 @@
   # Enable the X11 windowing system.
   services.xserver.enable = false; #no default dm, maybe smth breaks
 
+  # display manager
+  services.displayManager.ly.enable = true;
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
     variant = "";
   };
 
+  # Fonts
+  fonts.fontconfig.enable = true;
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+  ];
 
   services.keyd = {
     enable = true;
@@ -121,17 +130,18 @@
   environment.systemPackages = with pkgs; [
      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
      wget
-	 neovim
-	 kitty
-	 chezmoi
-	 rmpc
-	 evolution
-	 discord
-	 wine
-	 curl
-   ripgrep
-   fd
-   gcc
+     neovim
+     kitty
+     chezmoi
+     rmpc
+     evolution
+     discord
+     wine
+     curl
+     ripgrep
+     fd
+     gcc
+     nodejs
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
