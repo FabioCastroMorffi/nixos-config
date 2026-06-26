@@ -51,7 +51,7 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = false; #no default dm, maybe smth breaks
+  services.xserver.enable = true; #no default dm, maybe smth breaks
 
   # display manager
   services.displayManager.ly.enable = true;
@@ -88,6 +88,9 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+
+  # Battery
+  services.upower.enable = true;
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -142,6 +145,10 @@
      fd
      gcc
      nodejs
+     openssh
+     tree
+     github-copilot-cli
+     fastfetch
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
