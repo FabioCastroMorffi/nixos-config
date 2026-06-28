@@ -151,6 +151,9 @@
      ddrescue
      localsend
      xwayland-satellite
+     fuzzel
+     ibus
+     noctalia-shell
   ];
 
   # Default text editor
