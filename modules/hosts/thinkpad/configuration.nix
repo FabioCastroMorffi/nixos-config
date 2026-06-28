@@ -144,7 +144,7 @@
      ripgrep
      fd
      gcc
-     nodejs
+     nodejs_24
      tree
      github-copilot-cli
      fastfetch
@@ -154,6 +154,9 @@
      fuzzel
      ibus
      noctalia-shell
+     jc
+     cargo
+     rustup
   ];
 
   # Default text editor
@@ -185,5 +188,7 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "26.05"; # Did you read the comment?
+
+  programs.nix-ld.enable = true;
  };
 }
