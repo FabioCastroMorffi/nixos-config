@@ -1,6 +1,6 @@
 { self, inputs, ... }: {
 
-  flake.nixosModules.thinkpadConfiguration = 
+flake.nixosModules.thinkpadConfiguration = 
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
@@ -86,6 +86,9 @@
     };
   };
 
+  # Increase cursor height
+  # environment.variables.XCURSOR_SIZE = "132";
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -157,7 +160,15 @@
      jc
      cargo
      rustup
+     illum
+     bibata-cursors
   ];
+
+  #Cusor
+  environment.sessionVariables = {
+        XCURSOR_THEME = "Bibata-Modern-Classic";
+        XCURSOR_SIZE = "40";
+  };
 
   # Default text editor
   programs.neovim.defaultEditor = true;
