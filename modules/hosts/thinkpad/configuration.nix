@@ -12,6 +12,7 @@ flake.nixosModules.thinkpadConfiguration =
     [ # Include the results of the hardware scan.
       self.nixosModules.thinkpadHardware
       self.nixosModules.niri
+      self.nixosModules.nvim
     ];
 
   # Bootloader.
@@ -88,7 +89,7 @@ flake.nixosModules.thinkpadConfiguration =
 
   # Increase cursor height
   # environment.variables.XCURSOR_SIZE = "132";
-
+  
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -162,6 +163,7 @@ flake.nixosModules.thinkpadConfiguration =
      rustup
      illum
      bibata-cursors
+     gemini-cli
   ];
 
   #Cusor
@@ -169,6 +171,10 @@ flake.nixosModules.thinkpadConfiguration =
         XCURSOR_THEME = "Bibata-Modern-Classic";
         XCURSOR_SIZE = "40";
   };
+
+  programs.neovim = {
+    extraConfig = lib.filecontents ./modules/features/
+  }
 
   # Default text editor
   programs.neovim.defaultEditor = true;
