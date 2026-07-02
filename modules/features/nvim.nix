@@ -16,6 +16,7 @@
           inherit pkgs;
 
           specs.general = with pkgs.vimPlugins; [
+	    auto-session
             guess-indent-nvim
             gitsigns-nvim
             which-key-nvim
@@ -33,6 +34,13 @@
             nvim-treesitter
             nvim-lspconfig
             fidget-nvim
+
+
+            copilot-lua
+            # copilot-vim
+            avante-nvim
+
+            toggleterm-nvim
           ];
 
           specs.lazy = {
@@ -42,11 +50,6 @@
               cellular-automaton-nvim
               # discotheque-vim
 
-              # copilot-lua
-              # copilot-vim
-              avante-nvim
-
-              toggleterm-nvim
               lazygit-nvim
 
               telescope-fzf-native-nvim
@@ -76,8 +79,7 @@
             lazygit
           ];
 
-          settings.config_directory =
-            lib.generators.mkLuaInline "vim.fn.stdpath('config')";
+          settings.config_directory = ./nvim;
         };
     };
 }
