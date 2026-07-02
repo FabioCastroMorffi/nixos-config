@@ -111,7 +111,9 @@ do
   -- You can also add relative line numbers, to help with jumping.
   --  Experiment for yourself to see if you like it!
   -- vim.o.relativenumber = true
-
+  -- NOTE: For autosession because of checkhealth
+  --
+  vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
   -- Enable mouse mode, can be useful for resizing splits for example!
   vim.o.mouse = 'a'
 

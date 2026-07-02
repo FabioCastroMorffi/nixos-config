@@ -124,6 +124,11 @@ flake.nixosModules.thinkpadConfiguration =
     #  thunderbird
     ];
   };
+  
+  #Sudo Config
+  security.sudo = {
+    wheelNeedsPassword = false;
+  };
 
   # Install firefox.
   programs.firefox.enable = true;
