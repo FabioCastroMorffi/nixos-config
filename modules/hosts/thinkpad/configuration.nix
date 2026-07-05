@@ -13,7 +13,17 @@ flake.nixosModules.thinkpadConfiguration =
       self.nixosModules.thinkpadHardware
       self.nixosModules.niri
       self.nixosModules.nvim
+      inputs.home-manager.nixosModules.home-manager
     ];
+
+  # Home manager User
+  # home-manager.users.fabio = import ../../home.nix;
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    backupFileExtension = "backup";
+    users.fabio = self.homeModules.default;
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -171,6 +181,7 @@ flake.nixosModules.thinkpadConfiguration =
      illum
      bibata-cursors
      gemini-cli
+     gnumake
   ];
 
   #Cusor
