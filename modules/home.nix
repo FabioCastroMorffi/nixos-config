@@ -30,7 +30,7 @@
       ];
       initExtra = ''
           if [[ "$KITTY_WINDOW_ID" == "1" ]]; then
-            fastfetch --logo ~/Pictures/wooper_ascii.txt --logo-color-1 94 --color-keys 117 --color-title 117
+            fastfetch --logo ~/Pictures/wooper_ascii.txt --structure-disabled colors --logo-position top --logo-color-1 94 --color-keys 117 --color-title 117
           fi
 
           unset PROMPT_COMMAND
