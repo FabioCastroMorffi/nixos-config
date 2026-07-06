@@ -96,6 +96,10 @@
     '';
     };
 
+    home.packages = with pkgs; [
+      slack
+    ];
+
     # programs.starship = {
     #   enable = true;
     #   enableBashIntegration = true;

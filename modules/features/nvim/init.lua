@@ -1065,3 +1065,42 @@ vim.api.nvim_create_autocmd("VimEnter", {
     vim.cmd("TransparentEnable")
   end,
 })
+
+
+
+-- NOTE: This functions are prompted, may cause unexpected behaviour
+-- Remove 'options' from viewoptions
+vim.opt.viewoptions:remove("options")
+
+-- Create an augroup for remembering folds
+local remember_folds = vim.api.nvim_create_augroup("remember_folds", { clear = true })
+
+-- Helper function to check if the buffer is a valid file on disk
+local function should_save_view()
+  return vim.bo.buftype == "" 
+     and vim.fn.empty(vim.fn.expand("%:t")) == 0 
+     and vim.bo.filetype ~= "gitcommit"
+end
+
+-- Save view on buffer/window leave
+vim.api.nvim_create_autocmd("BufWinLeave", {
+  group = remember_folds,
+  pattern = "?*", -- Matches only if there is actually a file name
+  callback = function()
+    if should_save_view() then
+      vim.cmd("silent! mkview")
+    end
+  end,
+})
+
+-- Load view on buffer/window enter
+vim.api.nvim_create_autocmd("BufWinEnter", {
+  group = remember_folds,
+  pattern = "?*", -- Matches only if there is actually a file name
+  callback = function()
+    if should_save_view() then
+      vim.cmd("silent! loadview")
+    end
+  end,
+})
+

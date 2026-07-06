@@ -1,2 +1,2 @@
 switch:
-		sudo nixos-rebuild switch --flake .#thinkpad --impure
+		sudo nixos-rebuild switch --flake .#thinkpad
