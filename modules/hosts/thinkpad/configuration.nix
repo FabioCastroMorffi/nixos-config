@@ -65,7 +65,18 @@ flake.nixosModules.thinkpadConfiguration =
   services.xserver.enable = true; #no default dm, maybe smth breaks
 
   # display manager
-  services.displayManager.ly.enable = true;
+  services.displayManager.ly = {
+        enable = true;
+        settings = {
+            animation = "gameoflife";
+            animation_frame_delay = 5;
+            # gameoflife_entropy_interval = 10;
+            blank_password = true; # reset password on missed attempt
+            bigclock = "en";
+            hide_borders = true;
+        };
+  };
+
 
   # Configure keymap in X11
   services.xserver.xkb = {
