@@ -69,7 +69,7 @@ flake.nixosModules.thinkpadConfiguration =
         enable = true;
         settings = {
             animation = "gameoflife";
-            animation_frame_delay = 5;
+            animation_frame_delay = 15;
             # gameoflife_entropy_interval = 10;
             blank_password = true; # reset password on missed attempt
             bigclock = "en";
@@ -137,6 +137,13 @@ flake.nixosModules.thinkpadConfiguration =
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users."guest" = {
+    isNormalUser = true;
+    initialPassword = "helloworld";
+    description = "To try this config out";
+    extraGroups = ["networkmanager" "wheel"];
+  };
+
   users.users."fabio" = {
     isNormalUser = true;
     description = "fabio";

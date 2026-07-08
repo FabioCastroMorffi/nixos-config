@@ -20,7 +20,6 @@
     programs.bash = {
       enable = true;
       enableCompletion = true;
-      bashrcExtra = ''''; 
       historyIgnore = [
           "ls*"
           "cd*"
@@ -95,6 +94,14 @@
         background_blur 1
     '';
     };
+
+    # programs.rmpc = {
+    #   enable = true;
+    #   config = {
+    #
+    #
+    #   };
+    # };
 
     home.packages = with pkgs; [
       slack
