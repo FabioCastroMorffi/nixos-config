@@ -125,6 +125,7 @@ flake.nixosModules.thinkpadConfiguration =
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    wireplumber.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
 
@@ -156,6 +157,23 @@ flake.nixosModules.thinkpadConfiguration =
   #Sudo Config
   security.sudo = {
     wheelNeedsPassword = false;
+  };
+
+  #Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Name = "Computer";
+        ControllerMode = "dual";
+        FastConnectable = "true";
+        Experimental = "true";
+        Enable = "Source,Sink,Media,Socket";
+      };
+      Policy = { AutoEnable = "true"; };
+      LE = { EnableAdvMonInterleaveScan = "true"; };
+    };
   };
 
   # Install firefox.
