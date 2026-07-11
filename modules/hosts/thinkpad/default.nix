@@ -5,5 +5,4 @@
       self.nixosModules.thinkpadConfiguration
 ];
   };
-
 }
