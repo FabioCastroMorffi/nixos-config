@@ -386,6 +386,15 @@
                 geometry-corner-radius 12
                 clip-to-geometry true
             }
+            window-rule {
+                // Match the IBus candidate or panel window
+                match app-id="ibus-ui-emojier"
+                match app-id="ibus-extension-gtk3"
+                match title="^ibus-"
+
+                open-floating true
+                open-fullscreen false
+            }
 
             gestures {
                 hot-corners {

@@ -209,7 +209,6 @@ flake.nixosModules.thinkpadConfiguration =
      localsend
      xwayland-satellite
      fuzzel
-     ibus
      noctalia-shell
      jc
      cargo
@@ -218,6 +217,7 @@ flake.nixosModules.thinkpadConfiguration =
      bibata-cursors
      gemini-cli
      gnumake
+     pavucontrol
   ];
 
   #Cusor
@@ -238,6 +238,14 @@ flake.nixosModules.thinkpadConfiguration =
   # };
 
   # List services that you want to enable:
+  # ibus
+  i18n.inputMethod = {
+    enable = true;
+    type = "ibus";
+    ibus.engines = with pkgs.ibus-engines; [
+          anthy
+      ];
+  };
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
