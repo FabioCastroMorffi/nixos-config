@@ -22,7 +22,7 @@ flake.nixosModules.thinkpadConfiguration =
     useGlobalPkgs = true;
     useUserPackages = true;
     backupFileExtension = "backup";
-    users.fabio = self.homeModules.default;
+    users.fabio = self.homeModules.homeThinkpad;
   };
 
   # Bootloader.
@@ -221,10 +221,10 @@ flake.nixosModules.thinkpadConfiguration =
   ];
 
   #Cusor
-  environment.sessionVariables = {
-        XCURSOR_THEME = "Bibata-Modern-Classic";
-        XCURSOR_SIZE = "40";
-  };
+  # environment.sessionVariables = {
+  #       XCURSOR_THEME = "Bibata-Modern-Classic";
+  #       XCURSOR_SIZE = "40";
+  # };
 
   # Default text editor
   programs.neovim.defaultEditor = true;

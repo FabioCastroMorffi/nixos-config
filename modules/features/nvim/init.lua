@@ -359,7 +359,7 @@ do
   -- vim.pack.add {
   --   gh "xiyaowong/transparent.nvim"
   -- }
-  require('transparent').setup {}
+  -- require('transparent').setup {}
   --
   --
   -- vim.pack.add {
@@ -477,7 +477,7 @@ do
   -- -- Load the colorscheme here.
   -- -- Like many other themes, this one has different styles, and you could load
   -- -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-  -- vim.cmd.colorscheme 'tokyonight-night'
+  vim.cmd.colorscheme 'torte'
   --
   -- -- Highlight todo, notes, etc in comments
   -- vim.pack.add { gh 'folke/todo-comments.nvim' }
@@ -1060,11 +1060,11 @@ end
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 --
-vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function()
-    vim.cmd("TransparentEnable")
-  end,
-})
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--   callback = function()
+--     vim.cmd("TransparentEnable")
+--   end,
+-- })
 
 
 

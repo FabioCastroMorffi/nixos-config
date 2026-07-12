@@ -8,78 +8,81 @@
   };
 
   perSystem =
-    { pkgs, lib, self', ... }:
+    {
+      pkgs,
+      lib,
+      self',
+      ...
+    }:
     {
 
-      packages.myNeovim =
-        inputs.wrapper-modules.wrappers.neovim.wrap {
-          inherit pkgs;
+      packages.myNeovim = inputs.wrapper-modules.wrappers.neovim.wrap {
+        inherit pkgs;
 
-          specs.general = with pkgs.vimPlugins; [
-	    auto-session
-            guess-indent-nvim
-            gitsigns-nvim
-            which-key-nvim
-            tokyonight-nvim
-            todo-comments-nvim
+        specs.general = with pkgs.vimPlugins; [
+          auto-session
+          guess-indent-nvim
+          gitsigns-nvim
+          which-key-nvim
+          tokyonight-nvim
+          todo-comments-nvim
 
-            mini-nvim
-            vim-cool
-            transparent-nvim
-            auto-session
+          mini-nvim
+          vim-cool
+          # transparent-nvim
+          auto-session
 
-            luasnip
-            blink-cmp
+          luasnip
+          blink-cmp
 
-            nvim-treesitter
-            nvim-lspconfig
-            fidget-nvim
+          nvim-treesitter
+          nvim-lspconfig
+          fidget-nvim
 
+          copilot-lua
+          # copilot-vim
+          avante-nvim
 
-            copilot-lua
-            # copilot-vim
-            avante-nvim
+          toggleterm-nvim
+        ];
 
-            toggleterm-nvim
+        specs.lazy = {
+          lazy = true;
+          data = with pkgs.vimPlugins; [
+            duck-nvim
+            cellular-automaton-nvim
+            # discotheque-vim
+
+            lazygit-nvim
+
+            telescope-fzf-native-nvim
+            telescope-file-browser-nvim
+            telescope-ui-select-nvim
+
+            conform-nvim
           ];
-
-          specs.lazy = {
-            lazy = true;
-            data = with pkgs.vimPlugins; [
-              duck-nvim
-              cellular-automaton-nvim
-              # discotheque-vim
-
-              lazygit-nvim
-
-              telescope-fzf-native-nvim
-              telescope-file-browser-nvim
-              telescope-ui-select-nvim
-
-              conform-nvim
-            ];
-          };
-
-          info = {
-            have_nerd_font = true;
-            leader = " ";
-            colorscheme = "tokyonight-night";
-          };
-
-          runtimePkgs = with pkgs; [
-            clang-tools
-            rust-analyzer
-            gopls
-            lua-language-server
-            stylua
-            nixfmt
-
-            gnumake
-            nodejs
-            lazygit
-          ];
-
-          settings.config_directory = ./nvim;
         };
+
+        info = {
+          have_nerd_font = true;
+          leader = " ";
+          colorscheme = "sorbet";
+        };
+
+        runtimePkgs = with pkgs; [
+          clang-tools
+          rust-analyzer
+          gopls
+          lua-language-server
+          stylua
+          nixfmt
+
+          gnumake
+          nodejs
+          lazygit
+        ];
+
+        settings.config_directory = ./nvim;
+      };
     };
 }
