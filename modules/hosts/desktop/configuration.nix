@@ -22,7 +22,7 @@ flake.nixosModules.desktopConfiguration =
     useGlobalPkgs = true;
     useUserPackages = true;
     backupFileExtension = "backup";
-    users.fabio = self.homeModules.default;
+    users.fabio = self.homeModules.homeDesktop;
   };
 
   # Bootloader.
@@ -209,7 +209,6 @@ flake.nixosModules.desktopConfiguration =
      localsend
      xwayland-satellite
      fuzzel
-     ibus
      noctalia-shell
      jc
      cargo
@@ -238,6 +237,14 @@ flake.nixosModules.desktopConfiguration =
   # };
 
   # List services that you want to enable:
+  # ibus
+  i18n.inputMethod = {
+    enable = true;
+    type = "ibus";
+    ibus.engines = with pkgs.ibus-engines; [
+          anthy
+      ];
+  };
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;

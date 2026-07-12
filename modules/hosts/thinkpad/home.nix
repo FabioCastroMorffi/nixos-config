@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 {
-  flake.homeModules.default = { pkgs, ...}: {
+  flake.homeModules.homeThinkpad = { pkgs, ...}: {
     home.username = "fabio";
     home.homeDirectory = "/home/fabio";
 
@@ -105,6 +105,7 @@
 
     home.packages = with pkgs; [
       slack
+      yazi
     ];
 
     # programs.starship = {
