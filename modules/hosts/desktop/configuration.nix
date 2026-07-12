@@ -233,6 +233,7 @@
         gemini-cli
         gnumake
         pavucontrol
+        gh
       ];
 
       #Cusor
