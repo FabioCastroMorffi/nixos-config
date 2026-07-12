@@ -10,7 +10,7 @@ flake.nixosModules.desktopConfiguration =
 {
   imports =
     [ # Include the results of the hardware scan.
-      self.nixosModules.thinkpadHardware
+      self.nixosModules.desktopHardware
       self.nixosModules.niri
       self.nixosModules.nvim
       inputs.home-manager.nixosModules.home-manager
@@ -217,6 +217,7 @@ flake.nixosModules.desktopConfiguration =
      bibata-cursors
      gemini-cli
      gnumake
+     pavucontrol
   ];
 
   #Cusor
