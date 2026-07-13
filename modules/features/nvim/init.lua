@@ -478,7 +478,18 @@ do
   -- -- Like many other themes, this one has different styles, and you could load
   -- -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
   vim.cmd.colorscheme 'sorbet'
-  --
+  -- NOTE: LLM Assisted Changes for the function below
+  local function set_which_key_highlights()
+    vim.api.nvim_set_hl(0, 'WhichKeyNormal', { bg = '#11111b' })
+    vim.api.nvim_set_hl(0, 'WhichKeyBorder', { fg = '#74c7ec', bg = '#11111b' })
+    vim.api.nvim_set_hl(0, 'WhichKeyTitle', { bg = '#11111b' })
+  end
+
+  set_which_key_highlights()
+  vim.api.nvim_create_autocmd('ColorScheme', {
+    group = vim.api.nvim_create_augroup('which-key-highlights', { clear = true }),
+    callback = set_which_key_highlights,
+  })
   -- -- Highlight todo, notes, etc in comments
   -- vim.pack.add { gh 'folke/todo-comments.nvim' }
   require('todo-comments').setup { signs = false }
@@ -1103,4 +1114,3 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     end
   end,
 })
-
