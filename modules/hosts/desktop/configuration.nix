@@ -87,8 +87,9 @@
 
       # Configure keymap in X11
       services.xserver.xkb = {
-        layout = "us";
+        layout = "us,ca";
         variant = "";
+        options = "grp:alt_shift_toggle"; #shortcut
       };
 
       # Fonts
