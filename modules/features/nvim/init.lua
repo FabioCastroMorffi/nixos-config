@@ -533,6 +533,17 @@ do
   ---@diagnostic disable-next-line: duplicate-set-field
   statusline.section_location = function() return '%2l:%-2v' end
 
+  require('mini.tabline').setup({
+    -- Custom format function to strip out the "X" close button
+    format = function(buf_id, label)
+      return require('mini.tabline').default_format(buf_id, label, {
+        show_reorder = false,
+        show_close = false,
+        tabpage_section = 'none', -- for tab that displays tab index
+      })
+    end,
+  })
+
   -- ... and there is more!
   --  Check out: https://github.com/nvim-mini/mini.nvim
 end
