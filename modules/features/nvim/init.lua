@@ -479,16 +479,24 @@ do
   -- -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
   vim.cmd.colorscheme 'sorbet'
   -- NOTE: LLM Assisted Changes for the function below
-  local function set_which_key_highlights()
-    vim.api.nvim_set_hl(0, 'WhichKeyNormal', { bg = '#11111b' })
-    vim.api.nvim_set_hl(0, 'WhichKeyBorder', { fg = '#74c7ec', bg = '#11111b' })
-    vim.api.nvim_set_hl(0, 'WhichKeyTitle', { bg = '#11111b' })
+  local function set_floating_window_highlights()
+    local float_bg = '#11111b'
+    local float_border_fg = '#74c7ec'
+
+    vim.api.nvim_set_hl(0, 'NormalFloat', { bg = float_bg })
+    vim.api.nvim_set_hl(0, 'FloatBorder', { fg = float_border_fg, bg = float_bg })
+    vim.api.nvim_set_hl(0, 'FloatTitle', { bg = float_bg })
+    vim.api.nvim_set_hl(0, 'FloatFooter', { bg = float_bg })
+
+    vim.api.nvim_set_hl(0, 'WhichKeyNormal', { bg = float_bg })
+    vim.api.nvim_set_hl(0, 'WhichKeyBorder', { fg = float_border_fg, bg = float_bg })
+    vim.api.nvim_set_hl(0, 'WhichKeyTitle', { bg = float_bg })
   end
 
-  set_which_key_highlights()
+  set_floating_window_highlights()
   vim.api.nvim_create_autocmd('ColorScheme', {
-    group = vim.api.nvim_create_augroup('which-key-highlights', { clear = true }),
-    callback = set_which_key_highlights,
+    group = vim.api.nvim_create_augroup('floating-window-highlights', { clear = true }),
+    callback = set_floating_window_highlights,
   })
   -- -- Highlight todo, notes, etc in comments
   -- vim.pack.add { gh 'folke/todo-comments.nvim' }
@@ -539,7 +547,7 @@ do
       return require('mini.tabline').default_format(buf_id, label, {
         show_reorder = false,
         show_close = false,
-        tabpage_section = 'none', -- for tab that displays tab index
+        tabpage_section = 'left', -- for tab that displays tab index
       })
     end,
   })
