@@ -38,6 +38,7 @@
           nvim-treesitter
           nvim-lspconfig
           fidget-nvim
+          markview-nvim
 
           copilot-lua
           # copilot-vim
