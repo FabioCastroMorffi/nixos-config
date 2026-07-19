@@ -235,6 +235,8 @@
         gnumake
         pavucontrol
         gh
+        gdu
+        unrar
       ];
 
       #Cusor
