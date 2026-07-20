@@ -8,12 +8,13 @@ This is my Nix setup managing my not so many packages and configurations -- as o
 
 ## Usage
 Build NixOS config with both root and home packages for either host:
-`sudo nixos-rebuild switch --flake .#{Host}` or `make {Host}`
+```sudo nixos-rebuild switch --flake .#{Host}``` or `make {Host}`
 
 Otherwise, if you'd like to try out the config beforehand:
-`sudo nixos-rebuild test --flake github:FabioCastroMorffi/nixos-config#<Host>`
-## Structure
 
+```sudo nixos-rebuild test --flake github:FabioCastroMorffi/nixos-config#<Host>```
+## Structure
+```
 .
 ├── flake.lock
 ├── flake.nix
