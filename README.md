@@ -53,3 +53,6 @@ Otherwise, if you'd like to try out the config beforehand:<br>
 │   └── parts.nix
 ├── README.md
 └── settings.json
+```
+## Acknowledgements
+The structure mainly comes from Vimjoyer's Niri, Noctalia and Dendritic Pattern [video](https://www.youtube.com/watch?v=aNgujRXDTdE). I merely adapted it to add home-manager and only relie on the wrappers when necessary (mainly given they are bit harder to use and home-manager has modules for many of the packages already)
