@@ -13,7 +13,7 @@ Build NixOS config with both root and home packages for either host:
 Otherwise, if you'd like to try out the config beforehand:
 `sudo nixos-rebuild test --flake github:FabioCastroMorffi/nixos-config#<Host>`
 ## Structure
-`
+
 .
 ├── flake.lock
 ├── flake.nix
@@ -53,4 +53,3 @@ Otherwise, if you'd like to try out the config beforehand:
 │   └── parts.nix
 ├── README.md
 └── settings.json
-`
