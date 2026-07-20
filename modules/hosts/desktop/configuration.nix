@@ -212,7 +212,6 @@
         rmpc
         evolution
         discord
-        wine
         curl
         ripgrep
         fd
@@ -237,6 +236,7 @@
         gh
         gdu
         unrar
+        wineWow64Packages.stable
       ];
 
       #Cusor

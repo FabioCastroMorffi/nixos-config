@@ -241,6 +241,7 @@
         gh
         gdu
         unrar
+        wineWow64Packages.stable
       ];
 
       #Cusor
