@@ -7,11 +7,10 @@ This is my Nix setup managing my not so many packages and configurations -- as o
 - `hosts:` Contains all current hosts that themselves have the typical `configuration.nix` `hardware-configuration.nix`and `home.nix` files.
 
 ## Usage
-Build NixOS config with both root and home packages for either host:
+Build NixOS config with both root and home packages for either host:<br>
 ```sudo nixos-rebuild switch --flake .#{Host}``` or `make {Host}`
 
-Otherwise, if you'd like to try out the config beforehand:
-
+Otherwise, if you'd like to try out the config beforehand:<br>
 ```sudo nixos-rebuild test --flake github:FabioCastroMorffi/nixos-config#<Host>```
 ## Structure
 ```
