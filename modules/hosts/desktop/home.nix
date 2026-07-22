@@ -145,7 +145,7 @@
     # };
 
     home.file = {
-      # This creates a file at ~/.config/my-app/config.txt
+      # This creates a file at ~/.config/assets/
       ".config/assets/wooper_ascii.txt".text = ''
                     ..........		
                .~!7?YPPPPPPPPPJ!77.
@@ -170,12 +170,28 @@
               ~JJJJJ!       ~JJJJJ!
       '';
 
+      ".local/share/applications/pokemon_reloaded.desktop".text = ''
+          [Desktop Entry]
+          Type=Application
+          Name=Pokemon Reloaded
+          Exec=/home/fabio/.config/assets/pokemon_reloaded
+          Icon=/home/fabio/Pictures/reloaded.png
+          Terminal=false
+      '';
+
       # You can also create executable scripts this way
       ".config/assets/snip".text = ''
           #!/usr/bin/env bash
           grim -g "$(slurp)" - | wl-copy
       '';
       ".config/assets/snip".executable = true;
+
+      ".config/assets/pokemon_reloaded".text = ''
+          #!/usr/bin/env bash
+          cd /home/fabio/games/Proyecto\ Reloaded\ The\ Last\ Beta\ 1.9.1\ Full && wine /home/fabio/games/Proyecto\ Reloaded\ The\ Last\ Beta\ 1.9.1\ Full/Proyecto\ Reloaded\ The\ Last\ Beta\ 1.9.1\ Full.exe
+      '';
+      ".config/assets/pokemon_reloaded".executable = true;
+
     };
 
     home.stateVersion = "26.05";

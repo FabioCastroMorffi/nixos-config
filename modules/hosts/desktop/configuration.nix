@@ -89,7 +89,7 @@
       services.xserver.xkb = {
         layout = "us,ca";
         variant = "";
-        options = "grp:alt_shift_toggle"; #shortcut
+        options = "grp:alt_shift_toggle"; # shortcut
       };
 
       # Fonts
@@ -280,6 +280,10 @@
         dates = "02:00";
         randomizedDelaySec = "45min";
       };
+
+      # Virtualbox Setup
+      virtualisation.virtualbox.host.enable = true;
+      users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
       # Open ports in the firewall.
       # networking.firewall.allowedTCPPorts = [ ... ];
       # networking.firewall.allowedUDPPorts = [ ... ];
