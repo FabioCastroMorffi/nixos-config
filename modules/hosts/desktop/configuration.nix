@@ -281,6 +281,11 @@
         randomizedDelaySec = "45min";
       };
 
+      hardware.graphics = {
+        enable = true;
+        enable32Bit = true;
+      };
+
       # Virtualbox Setup
       virtualisation.virtualbox.host.enable = true;
       users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];

@@ -2,10 +2,6 @@
 {
   flake.homeModules.homeThinkpad = { pkgs, ... }: {
 
-    imports = [
-      ../../common_home.nix
-    ];
-
     home.username = "fabio";
     home.homeDirectory = "/home/fabio";
 
