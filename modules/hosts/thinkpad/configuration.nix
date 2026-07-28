@@ -242,7 +242,9 @@
         gdu
         unrar
         wineWow64Packages.stable
+        winetricks
         virtualbox
+        brightnessctl
       ];
 
       #Cusor
