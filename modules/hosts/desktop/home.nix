@@ -110,6 +110,9 @@
       grim
       slurp
       wl-clipboard
+
+      # Games
+      lutris
     ];
 
     # programs.starship = {

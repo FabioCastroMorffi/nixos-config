@@ -289,6 +289,10 @@
       # Virtualbox Setup
       virtualisation.virtualbox.host.enable = true;
       users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
+
+      # 32Bit
+      hardware.graphics.enable32Bit = true;
+
       # Open ports in the firewall.
       # networking.firewall.allowedTCPPorts = [ ... ];
       # networking.firewall.allowedUDPPorts = [ ... ];
