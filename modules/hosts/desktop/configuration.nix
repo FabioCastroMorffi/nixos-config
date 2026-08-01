@@ -237,6 +237,10 @@
         gdu
         unrar
         wineWow64Packages.stable
+        winetricks
+        virtualbox
+        wayvnc
+        remmina
       ];
 
       #Cusor
@@ -290,10 +294,9 @@
       virtualisation.virtualbox.host.enable = true;
       users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
 
-      # 32Bit
-      hardware.graphics.enable32Bit = true;
-
       # Open ports in the firewall.
+      networking.firewall.allowedTCPPorts = [ 5900 ];
+
       # networking.firewall.allowedTCPPorts = [ ... ];
       # networking.firewall.allowedUDPPorts = [ ... ];
       # Or disable the firewall altogether.

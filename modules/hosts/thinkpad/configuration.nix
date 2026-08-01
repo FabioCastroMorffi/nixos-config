@@ -245,6 +245,8 @@
         winetricks
         virtualbox
         brightnessctl
+        wayvnc
+        remmina
       ];
 
       #Cusor
@@ -297,6 +299,9 @@
       # Virtualbox Setup
       virtualisation.virtualbox.host.enable = true;
       users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
+
+      # Open ports in the firewall.
+      networking.firewall.allowedTCPPorts = [ 5900 ];
 
       # Open ports in the firewall.
       # networking.firewall.allowedTCPPorts = [ ... ];
