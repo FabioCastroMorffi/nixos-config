@@ -213,7 +213,6 @@
         wget
         kitty
         chezmoi
-        rmpc
         evolution
         discord
         wine
