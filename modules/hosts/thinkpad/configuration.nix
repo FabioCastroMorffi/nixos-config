@@ -278,8 +278,8 @@
 
       services.mpd = {
         enable = true;
-        music_directory = "/home/fabio/Music";
         settings = {
+          music_directory = "/home/fabio/Music";
           audio_output = [
             {
               type =  "pipewire";

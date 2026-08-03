@@ -272,8 +272,8 @@
 
       services.mpd = {
         enable = true;
-        music_directory = "/home/fabio/Music";
         settings = {
+          music_directory = "/home/fabio/Music";
           audio_output = [
             {
               type =  "pipewire";
@@ -289,7 +289,7 @@
       # NOTE: Automatic updates
       system.autoUpgrade = {
         enable = true;
-        flake = "~/my_github_clones/nixos-config/";
+        flake = "github:FabioCastroMorffi/nixos-config";
         flags = [
           "--print-build-logs"
           "--commit-lock-file"
