@@ -272,7 +272,15 @@
 
       services.mpd = {
         enable = true;
-        musicDirectory = "~/Music";
+        music_directory = "/home/fabio/Music";
+        settings = {
+          audio_output = [
+            {
+              type =  "pipewire";
+              name =  "My Pipewire";
+            }
+          ];
+        };
       };
 
       # Enable the OpenSSH daemon.
