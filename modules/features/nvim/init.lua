@@ -429,6 +429,21 @@ do
     open_mapping = [[<C-/>]],
     float_opts = { border = "rounded" },
   })
+
+  require("nvim-treesitter-textobjects").setup {
+    textobjects = {
+      select = {
+        enable = true;
+        lookahead = true,
+        keymaps = {
+          ['af'] = '@function.outer',
+          ['if'] = '@function.inner',
+          ['ac'] = '@class.outer',
+          ['ic'] = '@class.inner',
+        };
+      };
+    };
+  }
   --
   -- vim.pack.add { gh 'romainl/vim-cool' }
   --
@@ -1065,7 +1080,7 @@ do
 
   -- Ensure basic parsers are installed
   local parsers =
-    { "bash", "c", "diff", "html", "lua", "luadoc", "markdown", "markdown_inline", "query", "vim", "vimdoc" }
+    { "bash", "c", "diff", "html", "lua", "luadoc", "markdown", "markdown_inline", "query", "vim", "vimdoc", "nix"}
   require("nvim-treesitter").install(parsers)
 
   ---@param buf integer

@@ -35,7 +35,8 @@
           luasnip
           blink-cmp
 
-          nvim-treesitter
+          nvim-treesitter.withAllGrammars
+          nvim-treesitter-textobjects
           nvim-lspconfig
           fidget-nvim
           markview-nvim
@@ -71,6 +72,9 @@
         };
 
         runtimePkgs = with pkgs; [
+	  gcc
+	  tree-sitter
+
           clang-tools
           rust-analyzer
           gopls
