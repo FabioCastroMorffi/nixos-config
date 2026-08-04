@@ -17,6 +17,15 @@
       };
     };
 
+    gtk = {
+      enable = true;
+      cursorTheme = {
+        package = pkgs.catppuccin-cursors.mochaDark;
+        name = "catppuccin-mocha-dark-cursors";
+        size = 32;
+      };
+    };
+
     programs.bash = {
       enable = true;
       enableCompletion = true;
@@ -584,6 +593,8 @@ layout: Split(
 
       # Games
       lutris
+
+      catppuccin-cursors.mochaDark
     ];
 
     # programs.starship = {

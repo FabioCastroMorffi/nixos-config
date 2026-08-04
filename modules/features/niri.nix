@@ -129,10 +129,10 @@
             // Find more information on the wiki:
             // https://niri-wm.github.io/niri/Configuration:-Layout
 
-            cursor {
-                xcursor-theme "Bibata-Modern-Ice"
-                xcursor-size 32
-            }
+           cursor {
+               xcursor-theme "catppuccin-mocha-dark-cursors"
+               xcursor-size 32
+           }
 
             layout {
                 // Set gaps around windows in logical pixels.

@@ -233,7 +233,6 @@
         cargo
         rustup
         illum
-        bibata-cursors
         gemini-cli
         gnumake
         pavucontrol
