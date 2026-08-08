@@ -215,7 +215,6 @@
         chezmoi
         evolution
         discord
-        wine
         curl
         ripgrep
         fd
@@ -239,7 +238,7 @@
         gh
         gdu
         unrar
-        wineWow64Packages.stable
+        wineWowPackages.stable
         winetricks
         virtualbox
         brightnessctl
