@@ -352,16 +352,272 @@ do
   -- vim.pack.add {
   --   gh "tamton-aquib/duck.nvim"
   -- }
+  require("lazy").setup({
+    spec = {
+      -- Duck
+      {
+        "tamton-aquib/duck.nvim",
+        keys = {
+          {
+            "<leader>dd",
+            function()
+              require("duck").hatch()
+            end,
+            desc = "Hatch Duck",
+          },
+          {
+            "<leader>dk",
+            function()
+              require("duck").cook()
+            end,
+            desc = "Cook Duck",
+          },
+          {
+            "<leader>da",
+            function()
+              require("duck").cook_all()
+            end,
+            desc = "Cook All Ducks",
+          },
+        },
+      },
+
+      -- Cellular Automaton
+      {
+        "eandrju/cellular-automaton.nvim",
+        cmd = "CellularAutomaton",
+        keys = {
+          { "<leader>fml", "<cmd>CellularAutomaton make_it_rain<CR>", desc = "Make It Rain" },
+        },
+      },
+
+      -- Lazygit
+      {
+        "kdheepak/lazygit.nvim",
+        cmd = { "LazyGit", "LazyGitConfig" },
+        keys = {
+          { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+        },
+      },
+
+      -- Conform
+      {
+        "stevearc/conform.nvim",
+        event = { "BufWritePre" },
+        cmd = { "ConformInfo" },
+        opts = {
+          formatters_by_ft = {
+            lua = { "stylua" },
+            nix = { "nixfmt" },
+          },
+        },
+      },
+
+      -- Telescope Extensions
+      { "nvim-telescope/telescope-fzf-native.nvim", lazy = true },
+      { "nvim-telescope/telescope-file-browser.nvim", lazy = true },
+      { "nvim-telescope/telescope-ui-select.nvim", lazy = true },
+
+      -- Auto Session
+      {
+        "rmagatti/auto-session",
+        config = function()
+          require("auto-session").setup({})
+        end,
+      },
+
+      -- Avante
+      {
+        "yetone/avante.nvim",
+        dependencies = {
+          "nvim-lua/plenary.nvim",
+          "MunifTanjim/nui.nvim",
+          "MeanderingProgrammer/render-markdown.nvim",
+        },
+        config = function()
+          require("avante").setup({
+            input = {
+              provider = "snacks",
+            },
+            selector = {
+              provider = "snacks",
+            },
+          })
+        end,
+      },
+
+      -- Toggleterm
+      {
+        "akinsho/toggleterm.nvim",
+        cmd = "ToggleTerm",
+        keys = { { "<C-/>", desc = "Toggle Terminal" } },
+        config = function()
+          require("toggleterm").setup({
+            direction = "float",
+            open_mapping = [[<C-/>]],
+            float_opts = { border = "rounded" },
+          })
+        end,
+      },
+
+      -- Treesitter Textobjects
+      {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        config = function()
+          require("nvim-treesitter-textobjects").setup({
+            textobjects = {
+              select = {
+                enable = true,
+                lookahead = true,
+                keymaps = {
+                  ["af"] = "@function.outer",
+                  ["if"] = "@function.inner",
+                  ["ac"] = "@class.outer",
+                  ["ic"] = "@class.inner",
+                },
+              },
+            },
+          })
+        end,
+      },
+
+      -- Guess Indent
+      {
+        "NMAC427/guess-indent.nvim",
+        config = function()
+          require("guess-indent").setup({})
+        end,
+      },
+
+      -- Gitsigns
+      {
+        "lewis6991/gitsigns.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        config = function()
+          require("gitsigns").setup({
+            signs = {
+              add = { text = "+" },
+              change = { text = "~" },
+              delete = { text = "_" },
+              topdelete = { text = "‾" },
+              changedelete = { text = "~" },
+            },
+          })
+        end,
+      },
+
+      -- Which Key
+      {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        config = function()
+          require("which-key").setup({
+            delay = 0,
+            icons = { mappings = vim.g.have_nerd_font },
+            spec = {
+              { "<leader>s", group = "[S]earch", mode = { "n", "v" } },
+              { "<leader>t", group = "[T]oggle" },
+              { "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
+              { "gr", group = "LSP Actions", mode = { "n" } },
+            },
+          })
+        end,
+      },
+
+      -- Tokyonight & Highlight Setup
+      {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+          require("tokyonight").setup({
+            styles = {
+              comments = { italic = false },
+            },
+          })
+
+          vim.cmd.colorscheme("sorbet")
+
+          local function set_floating_window_highlights()
+            local float_bg = "#11111b"
+            local float_border_fg = "#74c7ec"
+
+            vim.api.nvim_set_hl(0, "NormalFloat", { bg = float_bg })
+            vim.api.nvim_set_hl(0, "FloatBorder", { fg = float_border_fg, bg = float_bg })
+            vim.api.nvim_set_hl(0, "FloatTitle", { bg = float_bg })
+            vim.api.nvim_set_hl(0, "FloatFooter", { bg = float_bg })
+
+            vim.api.nvim_set_hl(0, "WhichKeyNormal", { bg = float_bg })
+            vim.api.nvim_set_hl(0, "WhichKeyBorder", { fg = float_border_fg, bg = float_bg })
+            vim.api.nvim_set_hl(0, "WhichKeyTitle", { bg = float_bg })
+          end
+
+          set_floating_window_highlights()
+          vim.api.nvim_create_autocmd("ColorScheme", {
+            group = vim.api.nvim_create_augroup("floating-window-highlights", { clear = true }),
+            callback = set_floating_window_highlights,
+          })
+        end,
+      },
+
+      -- Todo Comments
+      {
+        "folke/todo-comments.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        config = function()
+          require("todo-comments").setup({ signs = false })
+        end,
+      },
+
+      -- Mini Plugins (mini.nvim)
+      {
+        "echasnovski/mini.nvim",
+        event = "VeryLazy",
+        config = function()
+          -- mini.pairs
+          require("mini.pairs").setup()
+
+          -- mini.ai
+          require("mini.ai").setup({
+            mappings = {
+              around_next = "aa",
+              inside_next = "ii",
+            },
+            n_lines = 500,
+          })
+
+          -- mini.surround
+          require("mini.surround").setup()
+
+          -- mini.statusline
+          local statusline = require("mini.statusline")
+          statusline.setup({ use_icons = vim.g.have_nerd_font })
+          statusline.section_location = function()
+            return "%2l:%-2v"
+          end
+
+          -- mini.tabline
+          require("mini.tabline").setup({
+            format = function(buf_id, label)
+              return require("mini.tabline").default_format(buf_id, label, {
+                show_reorder = false,
+                show_close = false,
+                tabpage_section = "left",
+              })
+            end,
+          })
+        end,
+      },
+    },
+    ui = {
+      open = "never",
+    },
+    checker = { enabled = false },
+    performance = {
+      reset_packpath = false,
+    },
+  })
   --
-  vim.keymap.set("n", "<leader>dd", function()
-    require("duck").hatch()
-  end, {})
-  vim.keymap.set("n", "<leader>dk", function()
-    require("duck").cook()
-  end, {})
-  vim.keymap.set("n", "<leader>da", function()
-    require("duck").cook_all()
-  end, {})
   --
   -- vim.pack.add {
   --   gh "eandrju/cellular-automaton.nvim"
@@ -374,220 +630,219 @@ do
   -- vim.pack.add {
   --   gh "rmagatti/auto-session"
   -- }
-  require("auto-session").setup({})
-  --
-  -- vim.pack.add {
-  --   gh "xiyaowong/transparent.nvim"
+  -- require("auto-session").setup({})
+  -- --
+  -- -- vim.pack.add {
+  -- --   gh "xiyaowong/transparent.nvim"
+  -- -- }
+  -- -- require('transparent').setup {}
+  -- --
+  -- --
+  -- -- vim.pack.add {
+  -- --   gh "zbirenbaum/copilot.lua"
+  -- -- }
+  -- -- vim.pack.add {
+  -- --   gh "github/copilot.vim"
+  -- -- }
+  -- --
+  -- -- vim.cmd.packadd 'copilot.lua'
+  -- -- vim.cmd.packadd 'copilot.vim'
+  -- -- require('copilot').setup {
+  -- --   suggestion = { enabled = false },
+  -- --   panel = { enabled = false },
+  -- --   filetypes = {
+  -- --     ['*'] = false,
+  -- --   },
+  -- -- }
+  -- --
+  -- -- ---@type (string|vim.pack.Spec)[]
+  -- local avante_plugins = {
+  --   gh("nvim-lua/plenary.nvim"),
+  --   gh("MunifTanjim/nui.nvim"),
+  --   gh("MeanderingProgrammer/render-markdown.nvim"),
+  --   gh("yetone/avante.nvim"),
   -- }
-  -- require('transparent').setup {}
-  --
-  --
-  -- vim.pack.add {
-  --   gh "zbirenbaum/copilot.lua"
-  -- }
-  -- vim.pack.add {
-  --   gh "github/copilot.vim"
-  -- }
-  --
-  -- vim.cmd.packadd 'copilot.lua'
-  -- vim.cmd.packadd 'copilot.vim'
-  -- require('copilot').setup {
-  --   suggestion = { enabled = false },
-  --   panel = { enabled = false },
-  --   filetypes = {
-  --     ['*'] = false,
+  -- --
+  -- -- vim.pack.add(avante_plugins)
+  -- -- vim.cmd.packadd 'avante.nvim'
+  -- --
+  -- require("avante").setup({
+  --   -- provider = 'copilot',
+  --   input = {
+  --     provider = "snacks",
   --   },
-  -- }
-  --
-  -- ---@type (string|vim.pack.Spec)[]
-  local avante_plugins = {
-    gh("nvim-lua/plenary.nvim"),
-    gh("MunifTanjim/nui.nvim"),
-    gh("MeanderingProgrammer/render-markdown.nvim"),
-    gh("yetone/avante.nvim"),
-  }
-  --
-  -- vim.pack.add(avante_plugins)
-  -- vim.cmd.packadd 'avante.nvim'
-  --
-  require("avante").setup({
-    -- provider = 'copilot',
-    input = {
-      provider = "snacks",
-    },
-    selector = {
-      provider = "snacks",
-    },
-  })
-  --
-  -- vim.pack.add { gh 'echasnovski/mini.pairs' }
-  require("mini.pairs").setup({})
-  --
-  vim.pack.add({ gh("akinsho/toggleterm.nvim") })
-  require("toggleterm").setup({
-    direction = "float",
-    open_mapping = [[<C-/>]],
-    float_opts = { border = "rounded" },
-  })
-
-  require("nvim-treesitter-textobjects").setup {
-    textobjects = {
-      select = {
-        enable = true;
-        lookahead = true,
-        keymaps = {
-          ['af'] = '@function.outer',
-          ['if'] = '@function.inner',
-          ['ac'] = '@class.outer',
-          ['ic'] = '@class.inner',
-        };
-      };
-    };
-  }
-  --
-  -- vim.pack.add { gh 'romainl/vim-cool' }
-  --
-  -- vim.pack.add { gh 'kdheepak/lazygit.nvim' }
-  --
-  -- vim.pack.add { gh "nvim-telescope/telescope-file-browser.nvim"}
-  -- -- For example, lets say we want to install `guess-indent.nvim` - a plugin for
-  -- -- automatically detecting and setting the indentation.
+  --   selector = {
+  --     provider = "snacks",
+  --   },
+  -- })
   -- --
-  -- -- We first install it from https://github.com/NMAC427/guess-indent.nvim
-  -- -- and then call its `setup()` function to start it with default settings.
-  -- vim.pack.add { gh 'NMAC427/guess-indent.nvim' }
-  require("guess-indent").setup({})
-  --
-  -- -- Because lua is a real programming language, you can also have some logic to your installation -
-  -- -- like only installing a plugin if a condition is met.
+  -- -- vim.pack.add { gh 'echasnovski/mini.pairs' }
   -- --
-  -- -- Here we only install `nvim-web-devicons` (which adds pretty icons) if we have a Nerd Font,
-  -- -- since otherwise the icons won't display properly.
-  -- if vim.g.have_nerd_font then vim.pack.add { gh 'nvim-tree/nvim-web-devicons' } end
+  -- -- vim.pack.add({ gh("akinsho/toggleterm.nvim") })
+  -- -- require("toggleterm").setup({
+  -- --   direction = "float",
+  -- --   open_mapping = [[<C-/>]],
+  -- --   float_opts = { border = "rounded" },
+  -- -- })
   --
-  -- -- Here is a more advanced configuration example that passes options to `gitsigns.nvim`
+  -- require("nvim-treesitter-textobjects").setup({
+  --   textobjects = {
+  --     select = {
+  --       enable = true,
+  --       lookahead = true,
+  --       keymaps = {
+  --         ["af"] = "@function.outer",
+  --         ["if"] = "@function.inner",
+  --         ["ac"] = "@class.outer",
+  --         ["ic"] = "@class.inner",
+  --       },
+  --     },
+  --   },
+  -- })
   -- --
-  -- -- See `:help gitsigns` to understand what each configuration key does.
-  -- -- Adds git related signs to the gutter, as well as utilities for managing changes
-  -- vim.pack.add { gh 'lewis6991/gitsigns.nvim' }
-  require("gitsigns").setup({
-    signs = {
-      add = { text = "+" }, ---@diagnostic disable-line: missing-fields
-      change = { text = "~" }, ---@diagnostic disable-line: missing-fields
-      delete = { text = "_" }, ---@diagnostic disable-line: missing-fields
-      topdelete = { text = "‾" }, ---@diagnostic disable-line: missing-fields
-      changedelete = { text = "~" }, ---@diagnostic disable-line: missing-fields
-    },
-  })
-  --
-  -- -- Useful plugin to show you pending keybinds.
-  -- vim.pack.add { gh 'folke/which-key.nvim' }
-  require("which-key").setup({
-    --   -- Delay between pressing a key and opening which-key (milliseconds)
-    delay = 0,
-    icons = { mappings = vim.g.have_nerd_font },
-    -- Document existing key chains
-    spec = {
-      { "<leader>s", group = "[S]earch", mode = { "n", "v" } },
-      { "<leader>t", group = "[T]oggle" },
-      { "<leader>h", group = "Git [H]unk", mode = { "n", "v" } }, -- Enable gitsigns recommended keymaps first
-      { "gr", group = "LSP Actions", mode = { "n" } },
-    },
-  })
-  --
-  -- -- [[ Colorscheme ]]
-  -- -- You can easily change to a different colorscheme.
-  -- -- Change the name of the colorscheme plugin below, and then
-  -- -- change the command under that to load whatever the name of that colorscheme is.
+  -- -- vim.pack.add { gh 'romainl/vim-cool' }
   -- --
-  -- -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-  -- vim.pack.add { gh 'folke/tokyonight.nvim' }
-  -- ---@diagnostic disable-next-line: missing-fields
-  require("tokyonight").setup({
-    styles = {
-      comments = { italic = false }, -- Disable italics in comments
-    },
-  })
-  --
-  -- -- Load the colorscheme here.
-  -- -- Like many other themes, this one has different styles, and you could load
-  -- -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-  vim.cmd.colorscheme("sorbet")
-  -- NOTE: LLM Assisted Changes for the function below
-  local function set_floating_window_highlights()
-    local float_bg = "#11111b"
-    local float_border_fg = "#74c7ec"
-
-    vim.api.nvim_set_hl(0, "NormalFloat", { bg = float_bg })
-    vim.api.nvim_set_hl(0, "FloatBorder", { fg = float_border_fg, bg = float_bg })
-    vim.api.nvim_set_hl(0, "FloatTitle", { bg = float_bg })
-    vim.api.nvim_set_hl(0, "FloatFooter", { bg = float_bg })
-
-    vim.api.nvim_set_hl(0, "WhichKeyNormal", { bg = float_bg })
-    vim.api.nvim_set_hl(0, "WhichKeyBorder", { fg = float_border_fg, bg = float_bg })
-    vim.api.nvim_set_hl(0, "WhichKeyTitle", { bg = float_bg })
-  end
-
-  set_floating_window_highlights()
-  vim.api.nvim_create_autocmd("ColorScheme", {
-    group = vim.api.nvim_create_augroup("floating-window-highlights", { clear = true }),
-    callback = set_floating_window_highlights,
-  })
-  -- -- Highlight todo, notes, etc in comments
-  -- vim.pack.add { gh 'folke/todo-comments.nvim' }
-  require("todo-comments").setup({ signs = false })
-  --
-  -- -- [[ mini.nvim ]]
-  -- --  A collection of various small independent plugins/modules
-  -- vim.pack.add { gh 'nvim-mini/mini.nvim' }
-  --
-  -- -- Better Around/Inside textobjects
+  -- -- vim.pack.add { gh 'kdheepak/lazygit.nvim' }
   -- --
-  -- -- Examples:
-  -- --  - va)  - [V]isually select [A]round [)]paren
-  -- --  - yiiq - [Y]ank [I]nside [I]+1 [Q]uote
-  -- --  - ci'  - [C]hange [I]nside [']quote
-  require("mini.ai").setup({
-    -- NOTE: Avoid conflicts with the built-in incremental selection mappings on Neovim>=0.12 (see `:help treesitter-incremental-selection`)
-    mappings = {
-      around_next = "aa",
-      inside_next = "ii",
-    },
-    n_lines = 500,
-  })
-  --
-  -- -- Add/delete/replace surroundings (brackets, quotes, etc.)
+  -- -- vim.pack.add { gh "nvim-telescope/telescope-file-browser.nvim"}
+  -- -- -- For example, lets say we want to install `guess-indent.nvim` - a plugin for
+  -- -- -- automatically detecting and setting the indentation.
+  -- -- --
+  -- -- -- We first install it from https://github.com/NMAC427/guess-indent.nvim
+  -- -- -- and then call its `setup()` function to start it with default settings.
+  -- -- vim.pack.add { gh 'NMAC427/guess-indent.nvim' }
+  -- require("guess-indent").setup({})
   -- --
-  -- -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-  -- -- - sd'   - [S]urround [D]elete [']quotes
-  -- -- - sr)'  - [S]urround [R]eplace [)] [']
-  require("mini.surround").setup()
-
-  -- Simple and easy statusline.
-  --  You could remove this setup call if you don't like it,
-  --  and try some other statusline plugin
-  local statusline = require("mini.statusline")
-  -- Set `use_icons` to true if you have a Nerd Font
-  statusline.setup({ use_icons = vim.g.have_nerd_font })
-
-  -- You can configure sections in the statusline by overriding their
-  -- default behavior. For example, here we set the section for
-  -- cursor location to LINE:COLUMN
-  ---@diagnostic disable-next-line: duplicate-set-field
-  statusline.section_location = function()
-    return "%2l:%-2v"
-  end
-
-  require("mini.tabline").setup({
-    -- Custom format function to strip out the "X" close button
-    format = function(buf_id, label)
-      return require("mini.tabline").default_format(buf_id, label, {
-        show_reorder = false,
-        show_close = false,
-        tabpage_section = "left", -- for tab that displays tab index
-      })
-    end,
-  })
+  -- -- -- Because lua is a real programming language, you can also have some logic to your installation -
+  -- -- -- like only installing a plugin if a condition is met.
+  -- -- --
+  -- -- -- Here we only install `nvim-web-devicons` (which adds pretty icons) if we have a Nerd Font,
+  -- -- -- since otherwise the icons won't display properly.
+  -- -- if vim.g.have_nerd_font then vim.pack.add { gh 'nvim-tree/nvim-web-devicons' } end
+  -- --
+  -- -- -- Here is a more advanced configuration example that passes options to `gitsigns.nvim`
+  -- -- --
+  -- -- -- See `:help gitsigns` to understand what each configuration key does.
+  -- -- -- Adds git related signs to the gutter, as well as utilities for managing changes
+  -- -- vim.pack.add { gh 'lewis6991/gitsigns.nvim' }
+  -- require("gitsigns").setup({
+  --   signs = {
+  --     add = { text = "+" }, ---@diagnostic disable-line: missing-fields
+  --     change = { text = "~" }, ---@diagnostic disable-line: missing-fields
+  --     delete = { text = "_" }, ---@diagnostic disable-line: missing-fields
+  --     topdelete = { text = "‾" }, ---@diagnostic disable-line: missing-fields
+  --     changedelete = { text = "~" }, ---@diagnostic disable-line: missing-fields
+  --   },
+  -- })
+  -- --
+  -- -- -- Useful plugin to show you pending keybinds.
+  -- -- vim.pack.add { gh 'folke/which-key.nvim' }
+  -- require("which-key").setup({
+  --   --   -- Delay between pressing a key and opening which-key (milliseconds)
+  --   delay = 0,
+  --   icons = { mappings = vim.g.have_nerd_font },
+  --   -- Document existing key chains
+  --   spec = {
+  --     { "<leader>s", group = "[S]earch", mode = { "n", "v" } },
+  --     { "<leader>t", group = "[T]oggle" },
+  --     { "<leader>h", group = "Git [H]unk", mode = { "n", "v" } }, -- Enable gitsigns recommended keymaps first
+  --     { "gr", group = "LSP Actions", mode = { "n" } },
+  --   },
+  -- })
+  -- --
+  -- -- -- [[ Colorscheme ]]
+  -- -- -- You can easily change to a different colorscheme.
+  -- -- -- Change the name of the colorscheme plugin below, and then
+  -- -- -- change the command under that to load whatever the name of that colorscheme is.
+  -- -- --
+  -- -- -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+  -- -- vim.pack.add { gh 'folke/tokyonight.nvim' }
+  -- -- ---@diagnostic disable-next-line: missing-fields
+  -- require("tokyonight").setup({
+  --   styles = {
+  --     comments = { italic = false }, -- Disable italics in comments
+  --   },
+  -- })
+  -- --
+  -- -- -- Load the colorscheme here.
+  -- -- -- Like many other themes, this one has different styles, and you could load
+  -- -- -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+  -- vim.cmd.colorscheme("sorbet")
+  -- -- NOTE: LLM Assisted Changes for the function below
+  -- local function set_floating_window_highlights()
+  --   local float_bg = "#11111b"
+  --   local float_border_fg = "#74c7ec"
+  --
+  --   vim.api.nvim_set_hl(0, "NormalFloat", { bg = float_bg })
+  --   vim.api.nvim_set_hl(0, "FloatBorder", { fg = float_border_fg, bg = float_bg })
+  --   vim.api.nvim_set_hl(0, "FloatTitle", { bg = float_bg })
+  --   vim.api.nvim_set_hl(0, "FloatFooter", { bg = float_bg })
+  --
+  --   vim.api.nvim_set_hl(0, "WhichKeyNormal", { bg = float_bg })
+  --   vim.api.nvim_set_hl(0, "WhichKeyBorder", { fg = float_border_fg, bg = float_bg })
+  --   vim.api.nvim_set_hl(0, "WhichKeyTitle", { bg = float_bg })
+  -- end
+  --
+  -- set_floating_window_highlights()
+  -- vim.api.nvim_create_autocmd("ColorScheme", {
+  --   group = vim.api.nvim_create_augroup("floating-window-highlights", { clear = true }),
+  --   callback = set_floating_window_highlights,
+  -- })
+  -- -- -- Highlight todo, notes, etc in comments
+  -- -- vim.pack.add { gh 'folke/todo-comments.nvim' }
+  -- require("todo-comments").setup({ signs = false })
+  -- --
+  -- -- -- [[ mini.nvim ]]
+  -- -- --  A collection of various small independent plugins/modules
+  -- -- vim.pack.add { gh 'nvim-mini/mini.nvim' }
+  -- --
+  -- -- -- Better Around/Inside textobjects
+  -- -- --
+  -- -- -- Examples:
+  -- -- --  - va)  - [V]isually select [A]round [)]paren
+  -- -- --  - yiiq - [Y]ank [I]nside [I]+1 [Q]uote
+  -- -- --  - ci'  - [C]hange [I]nside [']quote
+  -- require("mini.ai").setup({
+  --   -- NOTE: Avoid conflicts with the built-in incremental selection mappings on Neovim>=0.12 (see `:help treesitter-incremental-selection`)
+  --   mappings = {
+  --     around_next = "aa",
+  --     inside_next = "ii",
+  --   },
+  --   n_lines = 500,
+  -- })
+  -- --
+  -- -- -- Add/delete/replace surroundings (brackets, quotes, etc.)
+  -- -- --
+  -- -- -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
+  -- -- -- - sd'   - [S]urround [D]elete [']quotes
+  -- -- -- - sr)'  - [S]urround [R]eplace [)] [']
+  -- require("mini.surround").setup()
+  --
+  -- -- Simple and easy statusline.
+  -- --  You could remove this setup call if you don't like it,
+  -- --  and try some other statusline plugin
+  -- local statusline = require("mini.statusline")
+  -- -- Set `use_icons` to true if you have a Nerd Font
+  -- statusline.setup({ use_icons = vim.g.have_nerd_font })
+  --
+  -- -- You can configure sections in the statusline by overriding their
+  -- -- default behavior. For example, here we set the section for
+  -- -- cursor location to LINE:COLUMN
+  -- ---@diagnostic disable-next-line: duplicate-set-field
+  -- statusline.section_location = function()
+  --   return "%2l:%-2v"
+  -- end
+  --
+  -- require("mini.tabline").setup({
+  --   -- Custom format function to strip out the "X" close button
+  --   format = function(buf_id, label)
+  --     return require("mini.tabline").default_format(buf_id, label, {
+  --       show_reorder = false,
+  --       show_close = false,
+  --       tabpage_section = "left", -- for tab that displays tab index
+  --     })
+  --   end,
+  -- })
 
   -- ... and there is more!
   --  Check out: https://github.com/nvim-mini/mini.nvim
@@ -1080,7 +1335,7 @@ do
 
   -- Ensure basic parsers are installed
   local parsers =
-    { "bash", "c", "diff", "html", "lua", "luadoc", "markdown", "markdown_inline", "query", "vim", "vimdoc", "nix"}
+    { "bash", "c", "diff", "html", "lua", "luadoc", "markdown", "markdown_inline", "query", "vim", "vimdoc", "nix" }
   require("nvim-treesitter").install(parsers)
 
   ---@param buf integer

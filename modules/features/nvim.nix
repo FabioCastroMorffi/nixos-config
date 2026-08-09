@@ -20,6 +20,7 @@
         inherit pkgs;
 
         specs.general = with pkgs.vimPlugins; [
+
           auto-session
           guess-indent-nvim
           gitsigns-nvim
@@ -27,7 +28,6 @@
           tokyonight-nvim
           todo-comments-nvim
 
-          mini-nvim
           vim-cool
           # transparent-nvim
           auto-session
@@ -46,11 +46,15 @@
           avante-nvim
 
           toggleterm-nvim
+
+          lazy-nvim
         ];
 
         specs.lazy = {
           lazy = true;
           data = with pkgs.vimPlugins; [
+	    mini-nvim
+
             duck-nvim
             cellular-automaton-nvim
             # discotheque-vim
