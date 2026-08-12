@@ -205,6 +205,7 @@
         pkg:
         builtins.elem (lib.getName pkg) [
           "copilot.vim"
+          "copilot-language-server"
         ];
       # List packages installed in system profile. To search, run:
       # $ nix search wget
@@ -238,7 +239,7 @@
         gh
         gdu
         unrar
-        wineWowPackages.stable
+        wineWow64Packages.stable
         winetricks
         virtualbox
         brightnessctl
@@ -279,8 +280,8 @@
           music_directory = "/home/fabio/Music";
           audio_output = [
             {
-              type =  "pipewire";
-              name =  "My Pipewire";
+              type = "pipewire";
+              name = "My Pipewire";
             }
           ];
         };
@@ -292,7 +293,7 @@
       # NOTE: Automatic updates
       system.autoUpgrade = {
         enable = true;
-        flake = "~/my_github_clones/nixos-config/";
+        flake = "github:FabioCastroMorffi/nixos-config";
         flags = [
           "--print-build-logs"
           "--commit-lock-file"

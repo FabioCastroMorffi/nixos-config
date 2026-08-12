@@ -12,9 +12,14 @@
       pkgs,
       lib,
       self',
+      system,
       ...
     }:
     {
+      _module.args.pkgs = import inputs.nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
 
       packages.myNeovim = inputs.wrapper-modules.wrappers.neovim.wrap {
         inherit pkgs;
@@ -53,7 +58,7 @@
         specs.lazy = {
           lazy = true;
           data = with pkgs.vimPlugins; [
-	    mini-nvim
+            mini-nvim
 
             duck-nvim
             cellular-automaton-nvim
@@ -76,8 +81,8 @@
         };
 
         runtimePkgs = with pkgs; [
-	  gcc
-	  tree-sitter
+          gcc
+          tree-sitter
 
           clang-tools
           rust-analyzer
