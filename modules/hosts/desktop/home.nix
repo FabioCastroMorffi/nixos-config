@@ -592,6 +592,7 @@
 
       # Games
       lutris
+      steam
     ];
 
     # programs.starship = {

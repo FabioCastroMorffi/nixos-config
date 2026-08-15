@@ -593,6 +593,7 @@ layout: Split(
 
       # Games
       lutris
+      steam
 
       catppuccin-cursors.mochaDark
     ];
