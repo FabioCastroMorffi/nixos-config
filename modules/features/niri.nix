@@ -107,7 +107,7 @@
                 mode "3840x2160@60.000"
 
                 // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-                scale 2.25
+                scale 2.0
 
                 // Transform allows to rotate the output counter-clockwise, valid values are:
                 // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
