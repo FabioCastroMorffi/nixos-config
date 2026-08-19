@@ -603,7 +603,7 @@
       lutris
       steam
 
-      catppuccin-cursors.mochaDark
+      #catppuccin-cursors.mochaDark
     ];
 
     # programs.starship = {

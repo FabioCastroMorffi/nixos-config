@@ -581,9 +581,17 @@
       )
     '';
 
+    programs.yazi = {
+      enable = true;
+      package =
+        (import (builtins.fetchTarball {
+          url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
+          sha256 = "0ayq36r0m8aaa2sj5scr5imj8is6v3r6s17n1sa28pn6crg524hl";
+        }) { system = pkgs.stdenv.hostPlatform.system; }).yazi;
+    };
+
     home.packages = with pkgs; [
       slack
-      yazi
 
       # Snip
       grim
