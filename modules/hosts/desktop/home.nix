@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 {
-  flake.homeModules.homeDesktop = { pkgs, ... }: {
+  flake.homeModules.homeDesktop = { pkgs, lib, ... }: {
     home.username = "fabio";
     home.homeDirectory = "/home/fabio";
 
