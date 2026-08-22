@@ -211,7 +211,6 @@
         wget
         kitty
         chezmoi
-        evolution
         discord
         curl
         ripgrep
@@ -286,6 +285,11 @@
 
       # Enable the OpenSSH daemon.
       services.openssh.enable = true;
+
+      # Calendar Gnome
+      services.gnome.evolution-data-server.enable = true;
+      services.gnome.gnome-online-accounts.enable = true;
+      services.gnome.gnome-keyring.enable = true;
 
       # NOTE: Automatic updates
       system.autoUpgrade = {

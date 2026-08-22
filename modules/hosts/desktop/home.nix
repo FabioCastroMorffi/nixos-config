@@ -590,8 +590,19 @@
         }) { system = pkgs.stdenv.hostPlatform.system; }).yazi;
     };
 
+    dconf.settings = {
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+        icon-theme = "Adwaita";
+      };
+    };
+
     home.packages = with pkgs; [
+      # Management
       slack
+      gnome-control-center
+      gnome-calendar
+      adwaita-icon-theme
 
       # Snip
       grim

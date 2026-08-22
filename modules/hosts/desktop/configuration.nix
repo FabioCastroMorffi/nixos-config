@@ -206,7 +206,6 @@
         wget
         kitty
         chezmoi
-        evolution
         discord
         curl
         ripgrep
@@ -272,8 +271,8 @@
           music_directory = "/home/fabio/Music";
           audio_output = [
             {
-              type =  "pipewire";
-              name =  "My Pipewire";
+              type = "pipewire";
+              name = "My Pipewire";
             }
           ];
         };
@@ -281,6 +280,11 @@
 
       # Enable the OpenSSH daemon.
       services.openssh.enable = true;
+
+      # Calendar Gnome
+      services.gnome.evolution-data-server.enable = true;
+      services.gnome.gnome-online-accounts.enable = true;
+      services.gnome.gnome-keyring.enable = true;
 
       # NOTE: Automatic updates
       system.autoUpgrade = {
