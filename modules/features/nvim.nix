@@ -35,7 +35,6 @@
 
           vim-cool
           # transparent-nvim
-          auto-session
 
           luasnip
           blink-cmp
@@ -51,14 +50,24 @@
           avante-nvim
 
           toggleterm-nvim
+          conform-nvim
 
-          lazy-nvim
+          plenary-nvim
+          telescope-nvim
+          telescope-fzf-native-nvim
+          telescope-file-browser-nvim
+          telescope-ui-select-nvim
+
+          mason-nvim
+          mason-lspconfig-nvim
+          mason-tool-installer-nvim
+
+          mini-nvim
         ];
 
         specs.lazy = {
           lazy = true;
           data = with pkgs.vimPlugins; [
-            mini-nvim
 
             duck-nvim
             cellular-automaton-nvim
@@ -66,11 +75,6 @@
 
             lazygit-nvim
 
-            telescope-fzf-native-nvim
-            telescope-file-browser-nvim
-            telescope-ui-select-nvim
-
-            conform-nvim
           ];
         };
 
