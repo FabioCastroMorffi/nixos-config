@@ -10,6 +10,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs"; # optional line to avoid double downloads;
+    };
   };
   # import modules auto
   outputs = inputs: inputs.flake-parts.lib.mkFlake 

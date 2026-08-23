@@ -19,6 +19,8 @@
         self.nixosModules.niri
         self.nixosModules.nvim
         inputs.home-manager.nixosModules.home-manager
+        inputs.noctalia.nixosModules.default
+        self.nixosModules.bootIntro
       ];
 
       # Home manager User
@@ -124,6 +126,7 @@
 
       # Battery
       services.upower.enable = true;
+      services.power-profiles-daemon.enable = true;
 
       # Enable sound with pipewire.
       services.pulseaudio.enable = false;
@@ -194,6 +197,10 @@
       # Install firefox.
       programs.firefox.enable = true;
       programs.git.enable = true;
+      programs.noctalia = {
+        enable = true;
+        recommendedServices.enable = true;
+      };
 
       # Allow unfree packages
       nixpkgs.config.allowUnfree = true;

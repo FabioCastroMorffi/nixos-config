@@ -687,7 +687,7 @@
                 // moving the mouse or pressing any other key.
                 Mod+Shift+P { power-off-monitors; }
             }
-            spawn-at-startup "noctalia-shell"
+            spawn-at-startup "noctalia"
             //spawn-at-startup "ibus" "start" "--type=wayland"
             // spawn-at-startup "swaybg" "-i" "/home/fabio/Pictures/dune.jpeg"
           '';
