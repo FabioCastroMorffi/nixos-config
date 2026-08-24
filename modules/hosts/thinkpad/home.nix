@@ -1,6 +1,9 @@
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 {
   flake.homeModules.homeThinkpad = { pkgs, ... }: {
+    imports = [
+      inputs.noctalia.homeModules.default
+    ];
 
     home.username = "fabio";
     home.homeDirectory = "/home/fabio";
@@ -99,8 +102,10 @@
         hide_window_decorations yes
 
         #background
-        background_opacity 0.65
+        background #ffffff
+        background_opacity 0.7
         background_blur 1
+        background_tint 0.45
       '';
     };
 
@@ -646,6 +651,11 @@
     #     };
     #   };
     # };
+
+    programs.noctalia = {
+      enable = true;
+      settings = builtins.fromTOML (builtins.readFile ../../features/noctalia/noctalia-full-config.toml);
+    };
 
     home.file = {
       # This creates a file at ~/.config/my-app/config.txt

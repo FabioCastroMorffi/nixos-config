@@ -19,8 +19,6 @@
         self.nixosModules.niri
         self.nixosModules.nvim
         inputs.home-manager.nixosModules.home-manager
-        inputs.noctalia.nixosModules.default
-        self.nixosModules.bootIntro
       ];
 
       # Home manager User
@@ -29,7 +27,14 @@
         useGlobalPkgs = true;
         useUserPackages = true;
         backupFileExtension = "backup";
-        users.fabio = self.homeModules.homeThinkpad;
+
+        extraSpecialArgs = { inherit inputs; };
+
+        users.fabio = {
+          imports = [
+            self.homeModules.homeDesktop
+          ];
+        };
       };
 
       # Bootloader.
@@ -128,6 +133,22 @@
       services.upower.enable = true;
       services.power-profiles-daemon.enable = true;
 
+      # Clean
+      nix.gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 30d";
+      };
+
+      # Optimize disk space
+      nix.optimise.automatic = true;
+      nix.optimise.dates = [ "weekly" ];
+
+      systemd.timers = {
+        nix-optimise.timerConfig.Persistent = true;
+        nix-gc.timerConfig.Persistent = true;
+      };
+
       # Enable sound with pipewire.
       services.pulseaudio.enable = false;
       security.rtkit.enable = true;
@@ -197,10 +218,10 @@
       # Install firefox.
       programs.firefox.enable = true;
       programs.git.enable = true;
-      programs.noctalia = {
-        enable = true;
-        recommendedServices.enable = true;
-      };
+      # programs.noctalia = {
+      #   enable = true;
+      #   recommendedServices.enable = true;
+      # };
 
       # Allow unfree packages
       nixpkgs.config.allowUnfree = true;
@@ -216,13 +237,13 @@
       environment.systemPackages = with pkgs; [
         vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
         wget
-        kitty
         chezmoi
         discord
         curl
         ripgrep
         fd
         gcc
+        clang-tools
         nodejs_24
         tree
         github-copilot-cli
@@ -231,12 +252,10 @@
         localsend
         xwayland-satellite
         fuzzel
-        noctalia-shell
         jc
         cargo
         rustup
         illum
-        gemini-cli
         gnumake
         pavucontrol
         gh
@@ -248,6 +267,7 @@
         brightnessctl
         wayvnc
         remmina
+        unzip
       ];
 
       #Cusor

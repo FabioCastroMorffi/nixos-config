@@ -1,6 +1,10 @@
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, lib, ... }:
 {
   flake.homeModules.homeDesktop = { pkgs, lib, ... }: {
+    imports = [
+      inputs.noctalia.homeModules.default
+    ];
+
     home.username = "fabio";
     home.homeDirectory = "/home/fabio";
 
@@ -90,7 +94,7 @@
         enable_audio_bell no
 
         #windows
-        rememeber_window_size no
+        remember_window_size no
         initial_window_width 80c
         initial_window_height 24c
         window_margin_width 7.5
@@ -98,8 +102,10 @@
         hide_window_decorations yes
 
         #background
-        background_opacity 0.65
+        background #ffffff
+        background_opacity 0.7
         background_blur 1
+        background_tint 0.45
       '';
     };
 
@@ -645,6 +651,11 @@
     #     };
     #   };
     # };
+
+    programs.noctalia = {
+      enable = true;
+      settings = builtins.fromTOML (builtins.readFile ../../features/noctalia/noctalia-full-config.toml);
+    };
 
     home.file = {
       # This creates a file at ~/.config/assets/

@@ -136,7 +136,7 @@
 
             layout {
                 // Set gaps around windows in logical pixels.
-                gaps 8
+                gaps 20
 
                 // When to center a column when changing focus, options are:
                 // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -192,7 +192,7 @@
                     // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
 
                     // Color of the ring on the active monitor.
-                    active-color "#7fc8ff"
+                    active-color "#3A9BFC"
 
                     // Color of the ring on inactive monitors.
                     //
@@ -281,8 +281,8 @@
                 // Top and bottom struts will simply add outer gaps in addition to the area occupied by
                 // layer-shell panels and regular gaps.
                 struts {
-                    // left 64
-                    // right 64
+                    left 0
+                    bottom 15
                     // top 64
                     // bottom 64
                 }
@@ -686,6 +686,12 @@
                 // Powers off the monitors. To turn them back on, do any input like
                 // moving the mouse or pressing any other key.
                 Mod+Shift+P { power-off-monitors; }
+            }
+            layer-rule {
+                match namespace="noctalia-bar-.*$" 
+                background-effect { 
+                    blur false
+                    }
             }
             spawn-at-startup "noctalia"
             //spawn-at-startup "ibus" "start" "--type=wayland"
