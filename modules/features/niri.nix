@@ -282,7 +282,7 @@
                 // layer-shell panels and regular gaps.
                 struts {
                     left 0
-                    bottom 15
+                    bottom 5
                     // top 64
                     // bottom 64
                 }
