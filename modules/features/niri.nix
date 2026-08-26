@@ -418,6 +418,7 @@
 
                 // Suggested binds for running programs: terminal, app launcher, screen locker.
                 Mod+Return hotkey-overlay-title="Open Terminal: Kitty" { spawn "kitty"; }
+                Mod+S hotkey-overlay-title="Open Quick Access Terminal: Kitty" { spawn "sh" "-c" "KITTY_QUICK_ACCESS=1 kitten quick-access-terminal"; }
                 Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
                 Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
                 Super+B hotkey-overlay-title="Open Browser: Firefox" {spawn "firefox";}

@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixvim-flake.url = "github:FabioCastroMorffi/nvim-flake";
+    nixvim-flake.url = "path:/home/fabio/my_github_clones/nvim-flake";
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
 

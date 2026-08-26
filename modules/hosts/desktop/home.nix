@@ -1,4 +1,10 @@
-{ inputs, config, pkgs, lib, ... }:
+{
+  inputs,
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   flake.homeModules.homeDesktop = { pkgs, lib, ... }: {
     imports = [
@@ -40,7 +46,7 @@
         "man *"
       ];
       initExtra = ''
-        if [[ "$KITTY_WINDOW_ID" == "1" ]]; then
+        if [[ "$KITTY_WINDOW_ID" == "1" && -z "$KITTY_QUICK_ACCESS" ]]; then
           fastfetch --logo ~/.config/assets/wooper_ascii.txt --structure-disabled colors --logo-position top --logo-color-1 94 --color-keys 117 --color-title 117
         fi
 
@@ -80,33 +86,44 @@
     programs.kitty = {
       enable = true;
       enableGitIntegration = true;
+      settings = {
+        cursor_shape = "block";
+        cursor_shape_unfocused = "hollow";
+
+        # Trail
+        cursor_trail = 1;
+        cursor_trail_decay = "0.1 0.4";
+
+        enable_audio_bell = false;
+
+        # windows
+        remember_window_size = false;
+        initial_window_width = "80c";
+        initial_window_height = "24c";
+        window_margin_width = 7.5;
+        window_padding_width = 0;
+        hide_window_decorations = true;
+
+        # background
+        background = "#ffffff";
+        background_opacity = 0.7;
+        background_blur = 1;
+        background_tint = 0.35;
+      };
       font = {
         name = "FiraCode Nerd Font Mono";
         size = 12;
       };
-      extraConfig = ''
-        cursor_shape block
-        cursor_shape_unfocused hollow
-
-        # Trail
-        cursor_trail 1
-        cursor_trail_decay 0.1 0.4
-        enable_audio_bell no
-
-        #windows
-        remember_window_size no
-        initial_window_width 80c
-        initial_window_height 24c
-        window_margin_width 7.5
-        window_padding_width 0
-        hide_window_decorations yes
-
-        #background
-        background #ffffff
-        background_opacity 0.7
-        background_blur 1
-        background_tint 0.45
-      '';
+      quickAccessTerminalConfig = {
+        # lines = 20;
+        # columns = 40;
+        edge = "center";
+        hide_on_focus_loss = false;
+        margin_top = 50;
+        margin_right = 500;
+        margin_bottom = 400;
+        margin_left = 500;
+      };
     };
 
     programs.rmpc = {

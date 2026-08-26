@@ -262,7 +262,7 @@
         python3
         evtest
         unzip
-        inputs.nixvim-flake.packages.${system}.default
+        inputs.nixvim-flake.packages.${stdenv.hostPlatform.system}.default
       ];
 
       #Cusor
