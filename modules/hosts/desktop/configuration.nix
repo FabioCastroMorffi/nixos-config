@@ -17,7 +17,6 @@
         # Include the results of the hardware scan.
         self.nixosModules.desktopHardware
         self.nixosModules.niri
-        self.nixosModules.nvim
         inputs.home-manager.nixosModules.home-manager
       ];
 
@@ -229,7 +228,6 @@
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [
-        vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
         wget
         chezmoi
         discord
@@ -264,6 +262,7 @@
         python3
         evtest
         unzip
+        inputs.nixvim-flake.packages.${system}.default
       ];
 
       #Cusor
