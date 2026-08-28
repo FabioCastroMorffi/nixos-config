@@ -125,6 +125,12 @@
       # Increase cursor height
       # environment.variables.XCURSOR_SIZE = "132";
 
+      # Env variables
+      environment.variables = {
+        EDITOR = "nvim";
+        VISUAL = "nvim";
+      };
+
       # Enable CUPS to print documents.
       services.printing.enable = true;
 
@@ -181,6 +187,7 @@
         extraGroups = [
           "networkmanager"
           "wheel"
+          "input"
         ];
         packages = with pkgs; [
           #  thunderbird
@@ -272,7 +279,7 @@
       # };
 
       # Default text editor
-      programs.neovim.defaultEditor = true;
+      # programs.neovim.defaultEditor = true;
 
       # Some programs need SUID wrappers, can be configured further or are
       # started in user sessions.

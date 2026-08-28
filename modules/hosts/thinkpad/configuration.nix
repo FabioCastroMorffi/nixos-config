@@ -125,6 +125,12 @@
       # Increase cursor height
       # environment.variables.XCURSOR_SIZE = "132";
 
+      # Env variables
+      environment.variables = {
+        EDITOR = "nvim";
+        VISUAL = "nvim";
+      };
+
       # Enable CUPS to print documents.
       services.printing.enable = true;
 
@@ -182,6 +188,7 @@
         extraGroups = [
           "networkmanager"
           "wheel"
+          "input"
         ];
         packages = with pkgs; [
           #  thunderbird
@@ -266,6 +273,7 @@
         wayvnc
         remmina
         unzip
+        evtest
         inputs.nixvim-flake.packages.${stdenv.hostPlatform.system}.default
       ];
 
