@@ -263,7 +263,6 @@
         unrar
         wineWow64Packages.stable
         winetricks
-        virtualbox
         wayvnc
         remmina
         python3
