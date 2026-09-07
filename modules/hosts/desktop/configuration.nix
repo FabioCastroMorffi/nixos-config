@@ -218,7 +218,9 @@
 
       # Install firefox.
       programs.firefox.enable = true;
-      programs.git.enable = true;
+      programs.git = {
+        enable = true;
+      };
       # programs.noctalia = {
       #   enable = true;
       #   recommendedServices.enable = true;

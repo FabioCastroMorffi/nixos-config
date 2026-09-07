@@ -18,6 +18,7 @@
           email = "fabiocastromorffi@gmail.com";
         };
       };
+      lfs.enable = true;
     };
 
     gtk = {
