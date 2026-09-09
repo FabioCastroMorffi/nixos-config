@@ -42,7 +42,7 @@
       boot.loader.systemd-boot.configurationLimit = 8;
 
       networking.hostName = "nix_tower"; # Define your hostname.
-      # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+      networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
       # because flakes are still experimental
       nix.settings.experimental-features = [
@@ -271,6 +271,7 @@
         evtest
         unzip
         inputs.nixvim-flake.packages.${stdenv.hostPlatform.system}.default
+        libreoffice
       ];
 
       #Cusor
