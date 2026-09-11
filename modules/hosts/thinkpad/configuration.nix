@@ -42,7 +42,7 @@
       boot.loader.systemd-boot.configurationLimit = 8;
 
       networking.hostName = "nix_mobile"; # Define your hostname.
-      networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+      networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
       # because flakes are still experimental
       nix.settings.experimental-features = [
@@ -223,7 +223,11 @@
 
       # Install firefox.
       programs.firefox.enable = true;
-      programs.git.enable = true;
+      programs.git = {
+        enable = true;
+        lfs.enable = true;
+      };
+
       # programs.noctalia = {
       #   enable = true;
       #   recommendedServices.enable = true;
@@ -276,6 +280,7 @@
         evtest
         inputs.nixvim-flake.packages.${stdenv.hostPlatform.system}.default
         libreoffice
+        git-lfs
       ];
 
       #Cusor
