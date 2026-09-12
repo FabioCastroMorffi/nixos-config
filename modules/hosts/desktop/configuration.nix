@@ -220,7 +220,9 @@
       programs.firefox.enable = true;
       programs.git = {
         enable = true;
+        lfs.enable = true;
       };
+
       # programs.noctalia = {
       #   enable = true;
       #   recommendedServices.enable = true;
@@ -272,6 +274,7 @@
         unzip
         inputs.nixvim-flake.packages.${stdenv.hostPlatform.system}.default
         libreoffice
+        git-lfs
       ];
 
       #Cusor
