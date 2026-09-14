@@ -42,7 +42,7 @@
       boot.loader.systemd-boot.configurationLimit = 8;
 
       networking.hostName = "nix_tower"; # Define your hostname.
-      networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+      networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
       # because flakes are still experimental
       nix.settings.experimental-features = [
@@ -347,7 +347,10 @@
       users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
 
       # Open ports in the firewall.
-      networking.firewall.allowedTCPPorts = [ 5900 ];
+      networking.firewall.allowedTCPPorts = [
+        5900
+        53317
+      ];
 
       # networking.firewall.allowedTCPPorts = [ ... ];
       # networking.firewall.allowedUDPPorts = [ ... ];

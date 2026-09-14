@@ -353,7 +353,10 @@
       users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
 
       # Open ports in the firewall.
-      networking.firewall.allowedTCPPorts = [ 5900 ];
+      networking.firewall.allowedTCPPorts = [
+        5900
+        53317
+      ];
 
       # Open ports in the firewall.
       # networking.firewall.allowedTCPPorts = [ ... ];
