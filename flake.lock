@@ -214,8 +214,8 @@
         "nixvim": "nixvim"
       },
       "locked": {
-        "lastModified": 1789173599,
-        "narHash": "sha256-yT3mtEqYw69MXzNRquTJq0H46WIR28jkuhnxKR2733s=",
+        "lastModified": 1789173627,
+        "narHash": "sha256-E1lepQhQqxPbYYpekzoJHxbRBqsHXwCllbWniwzTCYo=",
         "path": "/home/fabio/my_github_clones/nvim-flake",
         "type": "path"
       },

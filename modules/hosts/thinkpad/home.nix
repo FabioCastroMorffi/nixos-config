@@ -630,6 +630,9 @@
       # Games
       lutris
       steam
+
+      # Diverse tools
+      zip
     ];
 
     # programs.starship = {
