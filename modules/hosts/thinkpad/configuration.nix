@@ -334,12 +334,11 @@
       # NOTE: Automatic updates
       system.autoUpgrade = {
         enable = true;
-        flake = "github:FabioCastroMorffi/nixos-config";
+        flake = "github:FabioCastroMorffi/nixos-config#thinkpad";
         flags = [
           "--print-build-logs"
-          "--commit-lock-file"
         ];
-        dates = "02:00";
+        dates = "Sun 02:00";
         randomizedDelaySec = "45min";
       };
 
