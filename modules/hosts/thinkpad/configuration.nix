@@ -332,15 +332,15 @@
       services.gnome.gnome-keyring.enable = true;
 
       # NOTE: Automatic updates
-      system.autoUpgrade = {
-        enable = true;
-        flake = "github:FabioCastroMorffi/nixos-config#thinkpad";
-        flags = [
-          "--print-build-logs"
-        ];
-        dates = "Sun 02:00";
-        randomizedDelaySec = "45min";
-      };
+      # system.autoUpgrade = {
+      #   enable = true;
+      #   flake = "github:FabioCastroMorffi/nixos-config#thinkpad";
+      #   flags = [
+      #     "--print-build-logs"
+      #   ];
+      #   dates = "Sun 02:00";
+      #   randomizedDelaySec = "45min";
+      # };
 
       hardware.graphics = {
         enable = true;
