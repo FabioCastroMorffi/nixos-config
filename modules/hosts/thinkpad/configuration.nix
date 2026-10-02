@@ -281,6 +281,7 @@
         inputs.nixvim-flake.packages.${stdenv.hostPlatform.system}.default
         libreoffice
         git-lfs
+        cppman
       ];
 
       #Cusor

@@ -7,9 +7,9 @@
 }:
 {
   flake.homeModules.homeDesktop = { pkgs, lib, ... }: {
-    imports = [
-      inputs.noctalia.homeModules.default
-    ];
+    # imports = [
+    #   inputs.noctalia.homeModules.default
+    # ];
 
     home.username = "fabio";
     home.homeDirectory = "/home/fabio";
