@@ -282,6 +282,7 @@
         libreoffice
         git-lfs
         cppman
+        arduino-cli
       ];
 
       #Cusor
