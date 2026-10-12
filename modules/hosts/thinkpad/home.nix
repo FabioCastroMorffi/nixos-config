@@ -34,11 +34,7 @@
       enable = true;
       enableCompletion = true;
       historyIgnore = [
-        "ls*"
-        "cd*"
         "exit"
-        "history*"
-        "man *"
       ];
       initExtra = ''
         if [[ "$KITTY_WINDOW_ID" == "1" && -z "$KITTY_QUICK_ACCESS" ]]; then
