@@ -36,30 +36,27 @@
       };
     };
 
-    programs.bash = {
+    programs.zsh = {
       enable = true;
       enableCompletion = true;
-      historyIgnore = [
+      autosuggestion.enable = true;
+      syntaxHighlighting.enable = true;
+
+      history.size = 1000;
+      history.ignoreAllDups = true;
+      history.path = "$HOME/.zsh_history";
+      history.ignorePatterns = [
         "exit"
       ];
-      initExtra = ''
+
+      initContent = ''
         if [[ "$KITTY_WINDOW_ID" == "1" && -z "$KITTY_QUICK_ACCESS" ]]; then
           fastfetch --logo ~/.config/assets/wooper_ascii.txt --structure-disabled colors --logo-position top --logo-color-1 94 --color-keys 117 --color-title 117
         fi
 
-        unset PROMPT_COMMAND
-        set_my_prompt() {
-                # Using pure ANSI escapes ensures no dependency on 'tput' timing
-                local COLOR_USER="\[\e[38;5;39m\]"
-                local COLOR_AT="\[\e[38;5;45m\]"
-                local COLOR_HOST="\[\e[38;5;51m\]"
-                local COLOR_DIR="\[\e[38;5;195m\]"
-                local COLOR_RESET="\[\e[0m\]"
-                
-                export PS1="''${COLOR_USER}\u''${COLOR_AT}@''${COLOR_HOST}\h ''${COLOR_DIR}\w''${COLOR_RESET}\$ "
-        } 
+        PROMPT='%F{39}%n%F{45}@%F{51}%m %F{195}%~%f%#'
 
-        PROMPT_COMMAND=set_my_prompt
+        bindkey '^[[Z' forward-word
       '';
 
       sessionVariables = {

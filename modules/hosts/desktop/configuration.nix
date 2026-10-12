@@ -105,6 +105,9 @@
         nerd-fonts.jetbrains-mono
       ];
 
+      # SHELL
+      programs.zsh.enable = true;
+
       services.keyd = {
         enable = true;
         keyboards = {
@@ -189,6 +192,7 @@
           "wheel"
           "input"
         ];
+        shell = pkgs.zsh;
         packages = with pkgs; [
           #  thunderbird
         ];
