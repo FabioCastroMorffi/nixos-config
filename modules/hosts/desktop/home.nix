@@ -674,14 +674,19 @@
 
     programs.ssh = {
       enable = true;
-      matchBlocks = {
+      enableDefaultConfig = false;
+      settings = {
         "github.com" = {
           identityFile = "~/.ssh/id_ed25519";
           user = "git";
+          addKeysToAgent = "yes";
+          identitiesOnly = true;
         };
         "codeberg.org" = {
           identityFile = "~/.ssh/id_ed25519_codeberg";
           user = "git";
+          addKeysToAgent = "yes";
+          identitiesOnly = true;
         };
       };
     };
