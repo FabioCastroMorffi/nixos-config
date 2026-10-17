@@ -58,6 +58,7 @@
       };
 
       shellAliases = {
+        "pullall" = "find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull \\";
         "vim" = "nvim";
         "ls" = "ls --color=auto";
         "grep" = "grep --color=auto";

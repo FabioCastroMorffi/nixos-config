@@ -196,6 +196,9 @@
         ];
       };
 
+      #SHELL
+      programs.zsh.enable = true;
+
       #Sudo Config
       security.sudo = {
         wheelNeedsPassword = false;
