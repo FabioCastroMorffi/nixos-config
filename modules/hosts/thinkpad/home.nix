@@ -664,6 +664,20 @@
       settings = builtins.fromTOML (builtins.readFile ../../features/noctalia/noctalia-full-config.toml);
     };
 
+    programs.ssh = {
+      enable = true;
+      matchBlocks = {
+        "github.com" = {
+          identityFile = "~/.ssh/id_ed25519";
+          user = "git";
+        };
+        "codeberg.org" = {
+          identityFile = "~/.ssh/id_ed25519_codeberg";
+          user = "git";
+        };
+      };
+    };
+
     home.file = {
       # This creates a file at ~/.config/my-app/config.txt
       ".config/assets/wooper_ascii.txt".text = ''
