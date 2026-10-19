@@ -139,11 +139,11 @@
       services.power-profiles-daemon.enable = true;
 
       # Clean
-      nix.gc = {
-        automatic = true;
-        dates = "weekly";
-        options = "--delete-older-than 30d";
-      };
+      # nix.gc = {
+      #   automatic = true;
+      #   dates = "weekly";
+      #   options = "--delete-older-than 30d";
+      # };
 
       # Optimize disk space
       nix.optimise.automatic = true;

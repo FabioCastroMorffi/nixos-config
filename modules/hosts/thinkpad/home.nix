@@ -48,9 +48,10 @@
           fastfetch --logo ~/.config/assets/wooper_ascii.txt --structure-disabled colors --logo-position top --logo-color-1 94 --color-keys 117 --color-title 117
         fi
 
-        PROMPT='%F{39}%n%F{45}@%F{51}%m %F{195}%~%f%# '
+        PROMPT='%F{39}%n%F{45}@%F{51}%m %F{195}%~%f '
 
-        bindkey '^L' forward-word
+        bindkey '^P' forward-word
+        bindkey '^@' autosuggest-accept
       '';
 
       sessionVariables = {
