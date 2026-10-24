@@ -3,8 +3,12 @@ high_contrast = false
 ui_scale = 1.0
 
 [audio]
+enable_notification_sounds = true
 enable_overdrive = false
+enable_power_sounds = true
+enable_screenshot_sounds = true
 enable_sounds = false
+enable_volume_sounds = true
 sound_theme = "freedesktop"
 sound_volume = 0.5
 
@@ -18,16 +22,19 @@ order = [ "default" ]
 
     [bar.default]
     auto_hide = false
+    auto_hide_delay_ms = 0
     background_opacity = 0.0
     border = "on_surface"
     border_width = 0.0
     capsule = true
     capsule_border = "primary"
+    capsule_border_width = 1.0
     capsule_fill = "surface_variant"
     capsule_opacity = 1.0
     capsule_padding = 6.0
     capsule_thickness = 0.75999999046325684
     center = [ "clock", "cat", "notes" ]
+    compositor_blur = true
     concave_edge_corners = true
     contact_shadow = false
     enabled = true
@@ -51,6 +58,7 @@ order = [ "default" ]
     scale = 1.0499999523162842
     shadow = true
     show_on_workspace_switch = true
+    show_tooltip = true
     smart_auto_hide = false
     start = [ "workspaces", "group:g1", "media" ]
     thickness = 38
@@ -62,10 +70,11 @@ order = [ "default" ]
         accordion = false
         accordion_direction = "end"
         border = "primary"
+        border_width = 1.0
         enabled = true
         fill = "surface_variant"
         id = "g1"
-        members = [ "cpu", "ram", "temp", "sysmon" ]
+        members = [ "cat_2", "cpu", "ram", "temp", "sysmon" ]
         opacity = 1.0
         padding = 6.0
 
@@ -79,22 +88,30 @@ minimum_brightness = 0.0
 sync_all_monitors = false
 
 [calendar]
+dedupe_events = false
+dedupe_ignore_patterns = []
 enabled = true
 event_date_format = "%A %e %B"
 event_time_format = "%H:%M"
-refresh_minutes = 15
+refresh_minutes = 5
 
     [calendar.account.personal_google]
     calendars = []
     color = "primary"
     credential_source = "secret-service"
-    name = "Fabio"
+    name = "Fabio's Calendar"
     password_file = ""
     path = ""
     provider = ""
     server_url = ""
     type = "google"
     username = ""
+
+    [calendar.reminders]
+    all_day_digest_time = "09:00"
+    default_lead_minutes = 10
+    enabled = true
+    use_event_reminders = true
 
 [control_center]
 hidden_tabs = []
@@ -160,7 +177,6 @@ magnification_scale = 1.4500000476837158
 main_axis_padding = 16
 margin_edge = 0
 margin_ends = 0
-monitors = []
 pinned = []
 position = "bottom"
 radius = 16
@@ -265,41 +281,42 @@ sunset = ""
 
 [lockscreen]
 allow_empty_password = false
-blur_intensity = 0.5
+blur_intensity = 0.37999999523162842
 blurred_desktop = false
 edge_smoothness = 0.30000001192092896
 enabled = true
 fingerprint = true
+grace_period_seconds = 0
 lock_before_suspend = true
 monitors = []
 tint_intensity = 0.30000001192092896
 transition = [ "fade", "wipe", "disc", "stripes", "zoom", "honeycomb" ]
 transition_duration = 1500.0
-wallpaper = ""
+wallpaper = "/home/fabio/Pictures/Wallpapers/a_white_light_pole_with_a_jet_trail_in_the_sky.jpg"
 
 [lockscreen_widgets]
 enabled = false
 schema_version = 2
-widget_order = [ "lockscreen-login-box@HDMI-A-1" ]
+widget_order = [ "lockscreen-login-box@eDP-1", "lockscreen-widget-0000000000000002" ]
 
     [lockscreen_widgets.grid]
     cell_size = 16
     major_interval = 4
     visible = true
 
-    [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1"]
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
     box_height = 196.0
     box_width = 810.0
-    cx = 960.0
-    cy = 898.0
+    cx = 854.0
+    cy = 778.0
     enabled = true
-    output = "HDMI-A-1"
-    placement_height = 1080.0
-    placement_width = 1920.0
+    output = "eDP-1"
+    placement_height = 960.0
+    placement_width = 1707.0
     rotation = 0.0
     type = "login_box"
 
-        [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1".settings]
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
         background_color = "surface_variant"
         background_opacity = 0.88
         background_radius = 12.0
@@ -315,6 +332,23 @@ widget_order = [ "lockscreen-login-box@HDMI-A-1" ]
         show_unlock_hint = true
         show_weather = true
 
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000002]
+    box_height = 240.0
+    box_width = 320.0
+    cx = 1493.5
+    cy = 168.0
+    enabled = true
+    output = "eDP-1"
+    placement_height = 960.0
+    placement_width = 1707.0
+    rotation = 0.0
+    type = "clock"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000002.settings]
+        background = false
+        circle = true
+        clock_style = "analog"
+
 [nightlight]
 enabled = true
 force = false
@@ -324,8 +358,11 @@ temperature_night = 3500
 [notification]
 background_opacity = 0.97000002861022949
 border = true
+border_color = "outline"
+border_width = 1.0
 collapse_on_dismiss = true
 enable_daemon = true
+follow_focused_output = false
 history_retention_hours = 0
 keep_dismissed_in_history = true
 layer = "top"
@@ -337,11 +374,16 @@ position = "top_right"
 scale = 1.0
 show_actions = true
 show_app_name = true
+width = 360
 
 [osd]
 background_opacity = 0.97000002861022949
 border = true
+border_color = "outline"
+border_width = 1.0
 enabled = true
+follow_focused_output = false
+hide_delay_ms = 1400
 monitors = []
 offset_x = 20
 offset_y = 8
@@ -371,7 +413,7 @@ scale = 1.0
 
 [plugins]
 auto_update = "all"
-enabled = [ "noctalia/bongocat", "noctalia/screen_recorder", "noctalia/notes" ]
+enabled = [ "noctalia/bongocat", "noctalia/screen_recorder", "dotnetrob/cat" ]
 
     [[plugins.source]]
     enabled = true
@@ -410,11 +452,14 @@ password_style = "default"
 polkit_agent = false
 popup_borders = true
 popup_shadows = true
+readline_shortcuts = false
 screen_time_enabled = false
+settings_expand_all_groups = false
 settings_show_advanced = true
 settings_window_translucent = false
 setup_wizard_enabled = true
 shared_gl_context = true
+show_close_buttons = true
 show_location = true
 telemetry_enabled = false
 time_format = "{:%H:%M}"
@@ -433,14 +478,22 @@ umbriel_overview_type_to_launch_enabled = false
     app_grid = false
     auto_paste = "auto"
     categories = true
+    category_icons_only = false
     compact = false
+    default_view = "recent"
     fetch_exchange_rates = true
+    layout = "full"
     pinned = []
     provider_prefix = "/"
+    search_position = "bottom"
     show_app_actions = false
     show_app_origin_indicator = true
     show_icons = true
+    show_session_button = true
+    show_settings_button = true
     sort_by_usage = true
+    track_usage = true
+    width = 760
 
         [shell.launcher.dmenu]
 
@@ -451,6 +504,8 @@ umbriel_overview_type_to_launch_enabled = false
     blacklist = []
 
     [shell.panel]
+    border_color = "outline"
+    border_width = 1.0
     borders = true
     clipboard_placement = "floating"
     clipboard_position = "top_center"
@@ -474,6 +529,7 @@ umbriel_overview_type_to_launch_enabled = false
     transparency_mode = "solid"
     wallpaper_placement = "attached"
     wallpaper_position = "center_left"
+    wallpaper_show_names = true
 
     [shell.privacy]
     cam_filter_regex = ""
@@ -495,6 +551,7 @@ umbriel_overview_type_to_launch_enabled = false
     freeze_screen = true
     pipe_command = ""
     pipe_to_command = false
+    region_modifier = "none"
     remember_last_region = false
     save_to_file = true
     show_cursor = false
@@ -562,7 +619,13 @@ umbriel_overview_type_to_launch_enabled = false
     direction = "down"
 
     [shell.window_switcher]
+    current_workspace_only = false
     mru = false
+    show_all_outputs = true
+    show_app_icon = true
+    show_caption = true
+    show_count = true
+    style = "carousel"
 
 [storage]
 key_file = ""
@@ -613,6 +676,7 @@ mode = "dark"
 pure_black_dark = false
 shell_mode = "follow"
 source = "wallpaper"
+sync_color_scheme = true
 wallpaper_scheme = "m3-content"
 
     [theme.templates]
@@ -655,19 +719,22 @@ type = "active_window"
 
 [widget.cat]
 audio_spectrum = true
-input_devices = [
-    "/dev/input/by-id/usb-ROYUAN_2.4G_Wireless_Keyboard-event-if01",
-    "/dev/input/by-id/usb-ROYUAN_2.4G_Wireless_Keyboard-event-kbd"
-]
+input_devices = [ "/dev/input/event9" ]
 rave_mode = true
 tappy_mode = true
 type = "noctalia/bongocat:cat"
+
+[widget.cat_2]
+cat_size = 35
+show_cpu_percent = true
+type = "dotnetrob/cat:cat"
 
 [widget.clock]
 format = "{:%I:%M %a, %b %d}"
 type = "clock"
 
 [widget.cpu]
+enabled = false
 stat = "cpu_usage"
 type = "sysmon"
 
