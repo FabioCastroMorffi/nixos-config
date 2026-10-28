@@ -287,6 +287,7 @@
         git-lfs
         cppman
         arduino-cli
+        usbutils
       ];
 
       #Cusor
